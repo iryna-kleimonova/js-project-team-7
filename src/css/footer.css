@@ -1,8 +1,7 @@
 .footer {
-  background-color: #060307;
   color: #fff;
-  padding: 90px 0 80px;
-  font-family: 'Inter', sans-serif;
+  padding: 60px 0 64px;
+  font-family: 'IBM Plex Sans', sans-serif;
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -39,7 +38,6 @@
   gap: 32px;
   list-style: none;
   justify-content: center;
-  padding: 0;
 }
 
 .footer__link {
@@ -69,6 +67,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
+  order: 0;
 }
 
 .footer__socials {
@@ -124,6 +123,9 @@
 }
 
 @media only screen and (min-width: 768px) {
+  .footer {
+    padding: 80px 0 80px;
+  }
   .footer__top {
     gap: 32px;
   }
@@ -143,6 +145,13 @@
   .footer__divider {
     margin-top: 80px;
     margin-bottom: 32px;
+  }
+  .footer__socials {
+    order: 1;
+  }
+
+  .footer__copy {
+    order: 0;
   }
 }
 

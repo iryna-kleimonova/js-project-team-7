@@ -1,6 +1,4 @@
-// import 'swiper/css';
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
+
 
 import axios from 'axios';
 import Swiper from 'swiper';
@@ -76,7 +74,7 @@ axios.defaults.baseURL = "https://sound-wave.b.goit.study/api/";
 
 async function fetchFeedbacks() {
     try {
-      const response = await axios.get('/feedbacks');
+      const response = await axios.get('/feedbacks?limit=3&page=1');
       const feedbacks = response.data.data;
   
       const container = document.getElementById('feedbacks-container');
@@ -90,14 +88,19 @@ async function fetchFeedbacks() {
       feedbacks.forEach(fb => {
         const slide = document.createElement('div');
         slide.classList.add('swiper-slide');
+        const roundedRating = Math.round(fb.rating);
   
         slide.innerHTML = `
           <div class="feedback-card">
-            <div class="rating" data-stars="${fb.rating}"></div>
+            <div class="rating" data-stars="${roundedRating}"></div>
             <p class="feedback-text">"${fb.descr}"</p>
             <p class="author-name">${fb.name}</p>
           </div>
         `;
+
+        const ratingEl = createRatingElement(roundedRating);
+        slide.querySelector('.rating').appendChild(ratingEl);
+  
   
         container.appendChild(slide);
       });
@@ -107,7 +110,22 @@ async function fetchFeedbacks() {
     } catch (error) {
       console.error('Ошибка при получении отзывов:', error);
     }
+}
+  
+function createRatingElement(roundedRating) {
+  const select = document.createElement('select');
+  select.classList.add('rating', 'rating--sm');
+  select.setAttribute('data-readonly', '');
+
+  for (let i = 1; i <= 5; i++){
+    const option = document.createElement('option');
+    option.value = i;
+    option.textContent = i;
+    if (i === roundedRating) option.selected = true;
+    select.appendChild(option);
   }
+  return select;
+}
   
   // Преобразование звёзд с css-star-rating
   function updateStars() {
@@ -117,6 +135,7 @@ async function fetchFeedbacks() {
       el.classList.add('rating', 'rating--read-only', 'rating--md');
       el.setAttribute('data-rating', stars);
     });
-  }
+}
   
+
   fetchFeedbacks();

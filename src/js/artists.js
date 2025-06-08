@@ -1,5 +1,5 @@
-import { fetchArtists, fetchArtistById, fetchArtistsAlbumsById } from './api-service.js';
-import { renderArtists } from './render-function.js';
+// import { fetchArtists, fetchArtistById, fetchArtistsAlbumsById } from './api-service.js';
+// import { renderArtists } from './render-function.js';
 import { refs } from './refs.js';
 
 let currentPage = 1;
@@ -27,7 +27,6 @@ refs.artistCardsContainer.addEventListener('click', async e => {
 
   const id = card.dataset.id;
   const artist = await fetchArtistById(id);
-
 });
 
-loadArtists(); 
+loadArtists();

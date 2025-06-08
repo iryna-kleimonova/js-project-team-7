@@ -9,6 +9,7 @@
     #23132b;
   padding-top: 64px;
   margin: auto;
+  margin-top: 64px;
 }
 
 .hero-content {
@@ -191,6 +192,9 @@
 @media (min-resolution: 192dpi) and (min-width: 1440px) {
   .hero-img-wrapper {
     background-image: url('../images/hero/hero-desktop-2x.webp');
+  }
+  .hero-section {
+    margin-top: 72px;
   }
 }
 .hero-btn-svg {

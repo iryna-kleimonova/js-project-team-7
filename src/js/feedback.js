@@ -3,7 +3,9 @@
 import axios from 'axios';
 import Swiper from 'swiper';
 import { Navigation, Pagination} from 'swiper/modules';
-import 'swiper/swiper-bundle.css';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import 'css-star-rating/css/star-rating.min.css';
 
 
@@ -28,48 +30,6 @@ const swiper = new Swiper('.feedback-swiper', {
 
 
 axios.defaults.baseURL = "https://sound-wave.b.goit.study/api/";
-// const feedbacksContainer = document.querySelector('.swiper-wrapper')
-
-// async function fetchFeedbacks() {
-//     try {
-//     const response = await axios.get('/feedbacks');
-//         const feedbacks = response.data.data;
-//         console.log(feedbacks);
-        
-//         renderFeedbacks(feedbacks);
-//     } catch (error) {
-//         console.error('Помилка при отриманні відгуків', error);
-//     }
-    
-// }
-
-
-// function renderFeedbacks(feedbacks) {
-//     if (!Array.isArray(feedbacks)) {
-//         console.error('Очікується масив відгуків, але отримано:', feedbacks);
-//         return;
-//       }
-//     const markup = feedbacks.map(({descr, name, rating }) => {
-//         const roundedRating = Math.round(rating);
-//         return `<div class="feedback-card">
-//             < div class="star-rating data-rating="${roundedRating}"></div>
-//             <h3 class = "comment" >${ descr }</h3>
-//                 <p class="author">"${name}</p></div >`;
-//     }).join('');
-    
-//     feedbacksContainer.innerHTML = markup;
-    
-
-  
-// document.querySelectorAll('.star-rating').forEach(el => {
-//     const rating = el.getAttribute('data-rating');
-//     el.classList.add('star-rating', `s-${rating}`);
-//     el.setAttribute('data-stars', rating);
-//     el.setAttribute('data-theme', 'css-stars');
-// });
-// }
-
-// fetchFeedbacks();
 
 
 async function fetchFeedbacks() {
@@ -81,7 +41,6 @@ async function fetchFeedbacks() {
       container.innerHTML = '';
   
       if (!Array.isArray(feedbacks)) {
-        console.error('Ожидался массив, но получено:', feedbacks);
         return;
       }
   
@@ -108,7 +67,7 @@ async function fetchFeedbacks() {
       updateStars();
       swiper.update();
     } catch (error) {
-      console.error('Ошибка при получении отзывов:', error);
+      console.error('Error receving feedback:', error);
     }
 }
   
@@ -127,7 +86,7 @@ function createRatingElement(roundedRating) {
   return select;
 }
   
-  // Преобразование звёзд с css-star-rating
+
   function updateStars() {
     const ratings = document.querySelectorAll('.rating');
     ratings.forEach(el => {

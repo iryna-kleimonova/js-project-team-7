@@ -7,6 +7,7 @@ export const refs = {
   // Artists list
   artistCardsContainer: document.querySelector('.js-artist-list'),
   artistCards: document.querySelectorAll('.js-artist-card'),
+  loadMoreBtn: document.querySelector('.load-more-btn'),
 
   // About Artist Modal
   modal: document.querySelector('.js-modal'),

@@ -9,6 +9,7 @@
     #23132b;
   padding-top: 64px;
   margin: auto;
+  margin-top: 64px;
 }
 
 .hero-content {
@@ -63,8 +64,6 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 -2px 2px rgba(0, 0, 0, 0.3),
     inset 0 0 0 1px rgba(255, 255, 255, 0.2),
     inset 0 2px 2px rgba(255, 255, 255, 0.3);
-  transition: var(--animation);
-  outline: none;
 }
 
 .hero-img-wrapper {
@@ -149,14 +148,14 @@
   .hero-section .container {
     flex-direction: row;
     justify-content: space-between;
-    gap: 40px;
+    gap: 31px;
     padding: 0 64px;
   }
 
   .hero-content {
     width: 640px;
     margin-bottom: 0;
-    padding-top: 150px;
+    padding-top: 215px;
   }
 
   .hero-header {
@@ -185,12 +184,7 @@
     right: 0;
     top: 0;
     height: 120px;
-    background: linear-gradient(
-      to top,
-      rgba(6, 3, 7, 1) 0%,
-      rgba(6, 3, 7, 0.6) 50%,
-      rgba(6, 3, 7, 0) 100%
-    );
+    background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, #060307 100%);
     pointer-events: none;
   }
 }
@@ -198,6 +192,9 @@
 @media (min-resolution: 192dpi) and (min-width: 1440px) {
   .hero-img-wrapper {
     background-image: url('../images/hero/hero-desktop-2x.webp');
+  }
+  .hero-section {
+    margin-top: 72px;
   }
 }
 .hero-btn-svg {

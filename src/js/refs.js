@@ -1,3 +1,4 @@
+
 //Обʼєкти з посиланнями на ДОМ елементи
 export const refs = {
     // Hero section
@@ -28,3 +29,4 @@ export const refs = {
     // Footer
     footer: document.querySelector('.js-footer'),
   };
+

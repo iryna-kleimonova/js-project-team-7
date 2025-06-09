@@ -39,4 +39,3 @@ export function renderArtists(data) {
 
   refs.artistCardsContainer.insertAdjacentHTML('beforeend', markup);
 }
-

@@ -1,5 +1,12 @@
 //Обʼєкти з посиланнями на ДОМ елементи
 export const refs = {
+  // Header & Navigation
+  burger: document.querySelector('.js-burger'),
+  closeBtn: document.querySelector('.js-close'),
+  navList: document.querySelector('.js-nav-list'),
+  navLinks: document.querySelectorAll('.nav-button'),
+  header: document.querySelector('.header'),
+
   // Hero section
   heroSection: document.querySelector('.js-hero'),
   getStartedBtn: document.querySelector('.js-hero-button'),

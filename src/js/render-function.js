@@ -26,7 +26,7 @@ export function renderArtists(data) {
                 <button class="artist-card-btn" type="button">
                  Learn More
                  <svg class="artist-card-icon" width="24" height="24">
-                 <use href="/images/sprite.svg#icon-caret-right"></use>
+                 <use href="./images/sprite.svg#icon-caret-right"></use>
                  </svg>
                 </button>
               </li>

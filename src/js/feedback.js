@@ -132,9 +132,9 @@ function initializeRaty(selector, rating) {
     readOnly: true,
     score: smartRoundScore(rating),
     half: true,
-    starOn: '/images/star-on.svg',
-    starOff: '/images/star-off.svg',
-    starHalf: '/images/star-half.svg',
+    starOn: './images/star-on.svg',
+    starOff: './images/star-off.svg',
+    starHalf: './images/star-half.svg',
   });
 }
 

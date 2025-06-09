@@ -1,5 +1,5 @@
 .about {
-  padding: 64px 0;
+  padding: 32px 0 64px;
   background: var(--color-scheme-1-background);
 }
 
@@ -31,12 +31,6 @@
   font-size: 18px;
   line-height: 1.5;
   color: var(--color-scheme-1-text);
-}
-
-.about-image {
-  display: block;
-  max-width: 100%;
-  height: auto;
 }
 
 /* Tablet */

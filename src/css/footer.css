@@ -1,7 +1,9 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .footer {
-  color: #fff;
   padding: 60px 0 64px;
-  font-family: 'IBM Plex Sans', sans-serif;
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -16,22 +18,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0;
-}
-
-.footer__logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 24px;
-  font-weight: 600;
-  text-decoration: none;
-  color: #764191;
-  margin-bottom: 32px;
 }
 
 .footer__nav {
+  margin-top: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,15 +32,10 @@
 
 .footer__link {
   text-decoration: none;
-  color: #ffffff;
   font-weight: 600;
   line-height: 1.5;
   font-size: 16px;
   transition: color 0.3s;
-}
-
-.footer__link:hover {
-  color: #fff;
 }
 
 .footer__bottom {
@@ -63,7 +48,6 @@
 
 .footer__copy {
   margin: 0;
-  color: #ffffff;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
@@ -77,32 +61,8 @@
   order: -1;
 }
 
-.footer__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: transparent;
-  color: #ffffff;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.footer__icon:hover {
-  color: #333;
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
 .footer__logo-icon {
-  fill: #a855f7;
-}
-
-.footer__logo-text {
-  font-size: 18px;
-  font-weight: 500;
-  color: #a855f7;
+  fill: #764191;
 }
 
 .footer__divider {
@@ -114,12 +74,12 @@
 }
 
 .footer__icon svg {
-  fill: #aaa;
+  fill: #ffffff;
   transition: fill 0.3s;
 }
 
 .footer__icon:hover svg {
-  fill: #fff;
+  fill: #a855f7;
 }
 
 @media only screen and (min-width: 768px) {
@@ -131,6 +91,7 @@
   }
 
   .footer__nav {
+    margin-top: 0;
     flex-direction: row;
     gap: 32px;
   }
@@ -158,10 +119,5 @@
 @media only screen and (min-width: 1440px) {
   .footer__nav {
     gap: 32px;
-  }
-
-  .footer__divider {
-    margin-top: 80px;
-    margin-bottom: 32px;
   }
 }

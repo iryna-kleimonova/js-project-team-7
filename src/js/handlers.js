@@ -7,7 +7,7 @@ const observer = new IntersectionObserver(
       refs.footer.classList.add('footer--visible');
     }
   },
-  { threshold: 0.1 }
+  { threshold: 0.8 }
 );
 
 observer.observe(refs.footer);

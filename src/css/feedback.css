@@ -65,15 +65,25 @@
   margin-bottom: 16px;
 }
 
-.rating {
+/* .rating {
   margin-bottom: 32px;
+} */
+
+.rating-star {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 32px;
+  font-size: 0;
 }
 
-.rating--md {
-  --star-size: 24px;
-  --star-color: #9e4ab7; /* заповнена зірка */
-  --star-background: #fff; /* незаповнена зірка */
-  --star-spacing: 4px;
+.rating-star img {
+  width: 20px;
+  height: 20px;
+  display: block;
+  object-fit: contain;
+  font-size: initial;
 }
 
 .swiper-button-prev,

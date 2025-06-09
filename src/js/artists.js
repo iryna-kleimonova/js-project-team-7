@@ -36,15 +36,13 @@ refs.artistCardsContainer.addEventListener('click', async e => {
   const artistId = card?.dataset?.id;
 
   if (!artistId) {
-    console.warn('ID не знайдено для картки артиста');
+    console.warn('ID not found for artist card');
     return;
   }
 
   try {
     const artistData = await fetchArtistById(artistId);
     const albumsData = await fetchArtistsAlbumsById(artistId);
-
-    console.log('Дані для модального вікна:', artistData, albumsData);
 
     openArtistModal({ artist: artistData, albums: albumsData });
   } catch (error) {

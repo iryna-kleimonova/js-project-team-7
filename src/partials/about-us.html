@@ -3,7 +3,6 @@
     <div class="about-img-thumb">
       <picture>
         <source
-          class="about-picture"
           media="(min-width: 1440px)"
           srcset="
             /images/about-us/about-desktop-min.webp    1x,
@@ -11,7 +10,6 @@
           "
         />
         <source
-          class="about-picture"
           media="(min-width: 768px)"
           srcset="
             /images/about-us/about-tablet-min.webp    1x,
@@ -19,7 +17,6 @@
           "
         />
         <source
-          class="about-picture"
           media="(max-width: 767px)"
           srcset="
             /images/about-us/about-mobile-min.webp    1x,
@@ -30,9 +27,10 @@
           class="about-image"
           src="/images/about-us/about-tablet-min.webp"
           alt="team photo"
+          loading="lazy"
           width="704"
           height="413"
-          loading="lazy"
+          style="width: 100%; height: auto"
         />
       </picture>
     </div>

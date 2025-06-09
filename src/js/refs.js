@@ -15,6 +15,7 @@ export const refs = {
   artistCardsContainer: document.querySelector('.js-artist-list'),
   artistCards: document.querySelectorAll('.js-artist-card'),
   loadMoreBtn: document.querySelector('.load-more-btn'),
+  loader: document.getElementById('loader'),
 
   // About Artist Modal
   modal: document.querySelector('.js-modal'),
@@ -32,7 +33,6 @@ export const refs = {
   testimonialsSlider: document.querySelector('.js-testimonials-slider'),
   testimonialPrevBtn: document.querySelector('.js-testimonials-btn-prev'),
   testimonialNextBtn: document.querySelector('.js-testimonials-btn-next'),
-
   // Footer
   footer: document.querySelector('.js-footer'),
 };

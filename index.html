@@ -18,8 +18,18 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/css-star-rating/css/star-rating.min.css"
+    />
     <script type="module" crossorigin src="/js-project-team-7/index.js"></script>
-    <link rel="stylesheet" crossorigin href="/js-project-team-7/assets/index-DFYY0RMG.css">
+    <link rel="modulepreload" crossorigin href="/js-project-team-7/assets/vendor-CD5jJkp3.js">
+    <link rel="stylesheet" crossorigin href="/js-project-team-7/assets/vendor-B8CV6ZVy.css">
+    <link rel="stylesheet" crossorigin href="/js-project-team-7/assets/index-12gyHU85.css">
   </head>
   <body>
     <header class="header">
@@ -99,11 +109,29 @@
 </section>
 
       
-      
+      <section class="reviews-container container">
+  <div class="swiper feedback-swiper">
+    <div class="swiper-wrapper" id="feedbacks-container"></div>
+
+    <div class="swiper-button-prev">
+      <svg class="left-arrow-icon" width="24" height="24">
+        <use href="/src/images/sprite.svg#icon-left-arrow-alt"></use>
+      </svg>
+    </div>
+    <div class="swiper-button-next">
+      <svg class="right-arrow-icon" width="24" height="24">
+        <use href="/src/images/sprite.svg#icon-right-arrow"></use>
+      </svg>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
       
     </main>
 
     
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   </body>
 </html>

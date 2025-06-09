@@ -2,16 +2,9 @@ import { refs } from './refs.js';
 
 export function renderArtists(data) {
   const markup = data.artists
-    .map(
-        artist => {
-            const {
-                _id,
-                strArtist,
-                strBiographyEN,
-                strArtistThumb,
-                genres
-              } = artist; 
-              return `
+    .map(artist => {
+      const { _id, strArtist, strBiographyEN, strArtistThumb, genres } = artist;
+      return `
               <li class="artist-card" data-id="${_id}">
               
                 <img class="artist-card-img" src="${strArtistThumb}" alt="${strArtist}" />
@@ -23,18 +16,22 @@ export function renderArtists(data) {
                 <h3 class="artist-card-name">${strArtist}</h3>
             
                 <p class="artist-card-info">
-                  ${strBiographyEN ? strBiographyEN.slice(0, 100) + '...' : 'No description available'}
+                  ${
+                    strBiographyEN
+                      ? strBiographyEN.slice(0, 100) + '...'
+                      : 'No description available'
+                  }
                 </p>
             
                 <button class="artist-card-btn" type="button">
                  Learn More
                  <svg class="artist-card-icon" width="24" height="24">
-                 <use href="/images/sprite.svg#right-arrow"></use>
+                 <use href="/images/sprite.svg#icon-caret-right"></use>
                  </svg>
                 </button>
               </li>
-            `
-        })
+            `;
+    })
     .join('');
 
   refs.artistCardsContainer.insertAdjacentHTML('beforeend', markup);

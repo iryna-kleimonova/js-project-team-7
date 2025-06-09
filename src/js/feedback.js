@@ -122,10 +122,10 @@ function smartRoundScore(rating) {
   const decimal = rating % 1;
 
   if (decimal === 0.5) {
-    return rating; // залишаємо половинку
+    return rating;
   }
 
-  return Math.round(rating); // звичайне округлення
+  return Math.round(rating);
 }
 
 function initializeRaty(selector, rating) {

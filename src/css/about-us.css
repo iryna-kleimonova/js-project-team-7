@@ -33,6 +33,12 @@
   color: var(--color-scheme-1-text);
 }
 
+.about-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 /* Tablet */
 @media screen and (min-width: 768px) {
   .about-wrapper {

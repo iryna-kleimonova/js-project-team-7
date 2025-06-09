@@ -1,6 +1,10 @@
-// import { fetchArtists, fetchArtistById, fetchArtistsAlbumsById } from './api-service.js';
-// import { openArtistModal } from './modal.js';
-// import { renderArtists } from './render-function.js';
+import {
+  fetchArtists,
+  fetchArtistById,
+  fetchArtistsAlbumsById,
+} from './api-service.js';
+import { openArtistModal } from './modal.js';
+import { renderArtists } from './render-function.js';
 import { refs } from './refs.js';
 
 let currentPage = 1;

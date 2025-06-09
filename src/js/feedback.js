@@ -92,7 +92,6 @@ async function fetchFeedbacks() {
   try {
     const { data } = await axios.get('/feedbacks?limit=3&page=1');
     const feedbacks = data.data;
-    console.log('Отримані фідбеки:', feedbacks);
     const container = document.getElementById('feedbacks-container');
     container.innerHTML = '';
 

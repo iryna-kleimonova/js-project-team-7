@@ -1,23 +1,36 @@
 import { fetchArtists, fetchArtistById, fetchArtistsAlbumsById } from './api-service.js';
 import { openArtistModal } from './modal.js';
-import { renderArtists } from './render-function.js';
+import {
+  renderArtists,
+  showLoadMoreBtn,
+  hideLoadMoreBtn,
+  showLoader,
+  hideLoader
+} from './render-function.js';
 import { refs } from './refs.js';
+
+const loader = document.getElementById('loader');
 
 let currentPage = 1;
 const limit = 8;
 let totalPages = null;
 
 async function loadArtists() {
+  showLoader();
+  hideLoadMoreBtn();
+  
   try {
     const data = await fetchArtists(currentPage, limit);
     renderArtists(data);
     totalPages = Math.ceil(data.total / limit);
-
-    if (currentPage >= totalPages) {
-      refs.loadMoreBtn.style.display = 'none';
-    }
   } catch (error) {
     console.error('Failed to load artists:', error);
+  } finally {
+    hideLoader();
+
+    if (currentPage < totalPages) {
+      showLoadMoreBtn();
+    }
   }
 }
 

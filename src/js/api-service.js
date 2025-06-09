@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://sound-wave.b.goit.study/api'; 
+axios.defaults.baseURL = 'https://sound-wave.b.goit.study/api';
 
 export async function fetchArtists(page = 1, limit = 8) {
   try {
@@ -13,10 +13,10 @@ export async function fetchArtists(page = 1, limit = 8) {
     }
 
     const data = await res.json();
-    return data; 
+    return data;
   } catch (error) {
     console.error('Error in fetchArtists:', error);
-    throw error; 
+    throw error;
   }
 }
 
@@ -31,12 +31,23 @@ export async function fetchArtistById(id) {
 }
 
 export async function fetchArtistsAlbumsById(id) {
-    try {
-      const res = await axios.get(`/artists/${id}/albums`);
-      return res.data;
-    } catch (error) {
-      console.error('Error in fetchArtistsAlbumsById:', error);
-      throw error;
-    }
+  try {
+    const res = await axios.get(`/artists/${id}/albums`);
+    return res.data;
+  } catch (error) {
+    console.error('Error in fetchArtistsAlbumsById:', error);
+    throw error;
   }
+}
 
+// Функція для запиту для модального вікна
+
+// export async function fetchModalById(id) {
+//   try {
+//     const response = await axios.get(`/artists/${id}/albums`);
+//     return response.data;
+//   } catch (error) {
+//     console.error(error);
+//     return null;
+//   }
+// }

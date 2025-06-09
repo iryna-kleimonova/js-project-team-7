@@ -34,6 +34,8 @@ refs.loadMoreBtn.addEventListener('click', () => {
 
 refs.artistCardsContainer.addEventListener('click', async e => {
   const button = e.target.closest('.artist-card-btn');
+  
+
   if (!button) return;
 
   const card = button.closest('.artist-card');

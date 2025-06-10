@@ -13,14 +13,16 @@ const swiper = new Swiper('.feedback-swiper', {
   loop: true,
   pagination: { el: '.swiper-pagination', clickable: true },
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+    // nextEl: '.swiper-button-next',
+    // prevEl: '.swiper-button-prev',
+    nextEl: '.feedback-next',
+    prevEl: '.feedback-prev',
   },
 
   breakpoints: {
     0: { slidesPerView: 1 },
     768: { slidesPerView: 1 },
-    1024: { slidesPerView: 1 },
+    1440: { slidesPerView: 1 },
   },
 });
 

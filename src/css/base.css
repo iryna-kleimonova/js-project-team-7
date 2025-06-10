@@ -11,3 +11,7 @@ body {
   background-color: #060307;
   color: #ffffff;
 }
+
+.scroll-target {
+  scroll-margin-top: 72px;
+}

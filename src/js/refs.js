@@ -17,6 +17,13 @@ export const refs = {
   loadMoreBtn: document.querySelector('.load-more-btn'),
   loader: document.getElementById('loader'),
 
+  // search filter
+  toggleFiltersBtn: document.getElementById('toggle-filters'),
+  filtersContainer: document.getElementById('filters-container'),
+  genreButton: document.getElementById('genre-button'),
+  genreMenu: document.getElementById('genre-menu'),
+  sortingDropdown: document.querySelector('#sorting-dropdown'),
+  sortingMenu: document.querySelector('#sorting-menu'),
 
   // About Artist Modal
   modal: document.querySelector('.js-modal'),

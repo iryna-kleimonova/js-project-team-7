@@ -40,3 +40,19 @@ export async function fetchArtistsAlbumsById(id) {
     }
   }
 
+// search filter
+export async function fetchGenres() {
+  try {
+    const response = await axios.get('/genres'); 
+    return response.data;
+  } catch (error) {
+  }
+}
+
+export async function fetchArtistsByGenre(genre) {
+  try {
+    const response = await axios.get(`/artists?genre=${genre}`);
+    return response.data;
+  } catch (error) {
+  }
+}

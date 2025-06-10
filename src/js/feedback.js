@@ -4,18 +4,21 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { renderStars } from './render-function';
 
 
 const swiper = new Swiper('.swiper', {
   modules: [Navigation, Pagination],
   slidesPerView: 1,
   spaceBetween: 0,
-  loop: true,
+  cssMode: true,
+  centeredSlides: true,
   
-  pagination: { el: '.swiper-pagination', clickable: true, dynamicBullets: true },
+  
+  pagination: { el: '.swiper-pagination', clickable: true, dynamicBullets: false },
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+    nextEl: '.feedback-next',
+    prevEl: '.feedback-prev',
   },
 
   breakpoints: {
@@ -47,34 +50,13 @@ async function fetchFeedbacks() {
         </div>
       `;
       container.appendChild(slide);
-      initializeRaty(`#${ratingId}`, fb.rating);
+      renderStars(`#${ratingId}`, fb.rating);
     });
 
     swiper.update();
   } catch (error) {
     console.error('Error fetching feedbacks:', error);
   }
-}
-
-function smartRoundScore(rating) {
-  const decimal = rating % 1;
-
-  if (decimal === 0.5) {
-    return rating;
-  }
-
-  return Math.round(rating);
-}
-
-function initializeRaty(selector, rating) {
-  $(selector).raty({
-    readOnly: true,
-    score: smartRoundScore(rating),
-    half: true,
-    starOn: './images/star-on.svg',
-    starOff: './images/star-off.svg',
-    starHalf: './images/star-half.svg',
-  });
 }
 
 fetchFeedbacks();

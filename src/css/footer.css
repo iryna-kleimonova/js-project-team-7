@@ -1,0 +1,134 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.footer {
+  padding: 48px 0 64px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.footer--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footer__top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer__nav {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  justify-content: center;
+}
+
+.footer__link {
+  text-decoration: none;
+  font-weight: 600;
+  line-height: 1.5;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.footer__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+}
+
+.footer__copy {
+  margin: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  order: 0;
+}
+
+.footer__socials {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  order: -1;
+}
+
+.footer__logo-icon {
+  fill: #764191;
+}
+
+.footer__divider {
+  height: 1px;
+  background-color: #333;
+  margin-top: 48px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.footer__icon svg {
+  fill: #ffffff;
+  transition: fill 0.3s;
+  width: 40px;
+  height: 40px;
+}
+
+.footer__icon:hover svg {
+  fill: #a855f7;
+}
+
+@media only screen and (min-width: 768px) {
+  .footer {
+    padding: 80px 0 80px;
+  }
+  .footer__top > *:not(:last-child) {
+    margin-top: 32px;
+  }
+
+  .footer__nav {
+    margin-top: 0;
+    flex-direction: row;
+    gap: 32px;
+  }
+
+  .footer__bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+  }
+
+  .footer__divider {
+    margin-top: 80px;
+    margin-bottom: 32px;
+  }
+  .footer__socials {
+    gap: 24px;
+    order: 1;
+  }
+
+  .footer__copy {
+    order: 0;
+  }
+  .footer__icon svg {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .footer__nav {
+    gap: 32px;
+  }
+  .footer__icon svg {
+    width: 24px;
+    height: 24px;
+  }
+}

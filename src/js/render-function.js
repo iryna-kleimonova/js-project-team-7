@@ -130,6 +130,8 @@ export function renderModal(artistData) {
 
   refs.modal.innerHTML = markupModal;
   refs.modal.classList.remove('hidden');
+}
+
 export function showLoadMoreBtn() {
   refs.loadMoreBtn.classList.remove('visually-hidden');
 }
@@ -144,4 +146,4 @@ export function showLoader() {
 
 export function hideLoader() {
   refs.loader.classList.add('visually-hidden');
-
+}

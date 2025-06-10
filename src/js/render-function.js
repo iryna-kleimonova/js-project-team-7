@@ -147,3 +147,21 @@ export function showLoader() {
 export function hideLoader() {
   refs.loader.classList.add('visually-hidden');
 }
+
+export function renderStars(containerSelector, rating) {
+  const container =
+    typeof containerSelector === 'string'
+      ? document.querySelector(containerSelector)
+      : containerSelector;
+
+  if (!container) return;
+
+  
+  const starDiv = document.createElement('div');
+  starDiv.className = 'stars';
+
+  const percent = Math.min(100, Math.max(0, (rating / 5) * 100));
+  starDiv.style.setProperty('--rating-percent', `${percent}%`);
+
+  container.appendChild(starDiv);
+}

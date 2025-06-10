@@ -173,3 +173,4 @@ export function sortArtists(sortType) {
   refs.artistCardsContainer.innerHTML = '';
   artists.forEach(artist => refs.artistCardsContainer.appendChild(artist)); 
 }
+

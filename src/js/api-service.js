@@ -38,7 +38,8 @@ export async function fetchArtistsAlbumsById(id) {
       console.error('Error in fetchArtistsAlbumsById:', error);
       throw error;
     }
-  }
+}
+  
 
 // search filter
 export async function fetchGenres() {

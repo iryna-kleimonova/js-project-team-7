@@ -6,16 +6,18 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { renderStars } from './render-function';
 
-
 const swiper = new Swiper('.swiper', {
   modules: [Navigation, Pagination],
   slidesPerView: 1,
   spaceBetween: 0,
   cssMode: true,
   centeredSlides: true,
-  
-  
-  pagination: { el: '.swiper-pagination', clickable: true, dynamicBullets: false },
+
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+    dynamicBullets: false,
+  },
   navigation: {
     nextEl: '.feedback-next',
     prevEl: '.feedback-prev',

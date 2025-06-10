@@ -148,29 +148,58 @@ export function hideLoader() {
   refs.loader.classList.add('visually-hidden');
 }
 
+export function renderStars(containerSelector, rating) {
+  const container =
+    typeof containerSelector === 'string'
+      ? document.querySelector(containerSelector)
+      : containerSelector;
+
+  if (!container) return;
+
+  // Створюємо елемент зірок
+  const starDiv = document.createElement('div');
+  starDiv.className = 'stars';
+
+  const percent = Math.min(100, Math.max(0, (rating / 5) * 100));
+  starDiv.style.setProperty('--rating-percent', `${percent}%`);
+
+  container.appendChild(starDiv);
+}
+
 // search filter
 import { fetchGenres } from './api-service.js';
 
 export async function renderGenres() {
   const genres = await fetchGenres();
 
-  refs.genreMenu.innerHTML = genres.map(genre => 
-    `<li data-genre="${genre.genre}">${genre.genre}</li>`
-  ).join('');
+  refs.genreMenu.innerHTML = genres
+    .map(genre => `<li data-genre="${genre.genre}">${genre.genre}</li>`)
+    .join('');
 }
 
 export function sortArtists(sortType) {
   const artists = [...refs.artistCardsContainer.children];
 
   if (sortType === 'az') {
-    artists.sort((a, b) => a.querySelector('.artist-card-name').textContent.localeCompare(b.querySelector('.artist-card-name').textContent));
+    artists.sort((a, b) =>
+      a
+        .querySelector('.artist-card-name')
+        .textContent.localeCompare(
+          b.querySelector('.artist-card-name').textContent
+        )
+    );
   } else if (sortType === 'za') {
-    artists.sort((a, b) => b.querySelector('.artist-card-name').textContent.localeCompare(a.querySelector('.artist-card-name').textContent));
+    artists.sort((a, b) =>
+      b
+        .querySelector('.artist-card-name')
+        .textContent.localeCompare(
+          a.querySelector('.artist-card-name').textContent
+        )
+    );
   } else {
-    return; 
+    return;
   }
 
   refs.artistCardsContainer.innerHTML = '';
-  artists.forEach(artist => refs.artistCardsContainer.appendChild(artist)); 
+  artists.forEach(artist => refs.artistCardsContainer.appendChild(artist));
 }
-

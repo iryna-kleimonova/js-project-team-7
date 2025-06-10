@@ -2,7 +2,7 @@
   <div class="js-modal-content modal-content">
     <button class="js-modal-close modal-close">
       <svg width="32" height="32">
-        <use></use>
+        <use href="../images/sprite.svg#icon-menu-close"></use>
       </svg>
     </button>
     <div class="js-modal-body"></div>
@@ -35,3 +35,20 @@
     <p></p>
   </div>
 </div> -->
+
+<div class="artist-modal-content">
+  <h2 class="artist-name">${strArtist}</h2>
+  <img class="artist-image" src="${strArtistThumb || ''}" alt="${strArtist}" />
+  <p class="artist-lable"><strong>Label:</strong> ${strLabel}</p>
+  <p class="artist-country"><strong>Country:</strong> ${strCountry}</p>
+  <p class="artist-genres"><strong>Genres:</strong> ${genres}</p>
+  <p class="artist-gender"><strong>Gender:</strong> ${strGender}</p>
+  <p class="artist-member"><strong>Members:</strong> ${intMembers}</p>
+  <p class="artist-formeed"><strong>Formed:</strong> ${intFormedYear}</p>
+  <p class="artist-disbanded">
+    <strong>Disbanded:</strong> ${ intDiedYear && intDiedYear !== 'null' ?
+    intDiedYear : 'Still active' }
+  </p>
+  <p class="artist-bio"><strong>Bio:</strong> ${strBiographyEN}</p>
+</div>
+`;

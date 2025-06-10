@@ -2,6 +2,59 @@
   display: none !important;
 }
 
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0px;
+  padding: 64px;
+  width: 1440px;
+  height: 1783px;
+  background: rgba(0, 0, 0, 0.25);
+  margin: 0 auto;
+}
 
+.modal-body {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 48px;
+  border-radius: 16px;
+  padding: 64px;
+  width: 1312px;
+  height: 1655px;
+  background: #060307;
+}
 
-
+/* #region artists */
+.artist-modal-content {
+}
+.artist-image {
+}
+.artist-name {
+}
+.artist-lable {
+}
+.artist-country {
+}
+.artist-genres {
+}
+.artist-gender {
+}
+.artist-member {
+}
+.artist-formeed {
+}
+.artist-disbanded {
+}
+.artist-bio {
+}
+/* #endregion artists */

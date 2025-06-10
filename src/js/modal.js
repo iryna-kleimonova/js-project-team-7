@@ -1,34 +1,27 @@
 // тимчасова функція для модального вікна
-    import { event } from 'jquery';
-    import { refs } from './refs';
-    import {renderModal} from './render-function';
+import { event } from 'jquery';
+import { refs } from './refs';
+import { renderArtistInfo, renderAlbums } from './render-function';
 
-    const { modal, modalCloseBtn, modalContent } = refs;
+const { modal, modalCloseBtn, modalContent } = refs;
 
 
+export function openArtistModal({ artist, albums }) {
+  const albumsList = Array.isArray(albums) ? albums : [];
 
-    // export function openArtistModal({ artist, albums }) {
-    //   console.log('Дані для модального вікна:', artist, albums);
-    //   modal.classList.remove("hidden");
-    // }
-    export function openArtistModal({ artist, albums }) {
-  const artistData = { ...artist, albumsList: albums || [] };
-  console.log(artistData);
-  renderModal(artistData);
+  console.log('Artist data received:', artist);
+  console.log('Albums list:', albumsList);
+
+  const artistHTML = renderArtistInfo(artist);
+  const albumsHTML = renderAlbums(albumsList);
+
+  refs.modalBody.innerHTML = artistHTML + albumsHTML;
   refs.modal.classList.remove('hidden');
-    }
+}
 
 
-
-
-
-
-
-
-    document.addEventListener('click', (event) => {
-      if (event.target.closest('.js-modal-close')) {
-        refs.modal.classList.add('hidden');
-      }
-    });
-
-
+document.addEventListener('click', event => {
+  if (event.target.closest('.js-modal-close')) {
+    refs.modal.classList.add('hidden');
+  }
+});

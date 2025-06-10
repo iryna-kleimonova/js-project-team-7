@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://sound-wave.b.goit.study/api'; 
+axios.defaults.baseURL = 'https://sound-wave.b.goit.study/api';
 
 export async function fetchArtists(page = 1, limit = 8) {
   try {
@@ -13,16 +13,16 @@ export async function fetchArtists(page = 1, limit = 8) {
     }
 
     const data = await res.json();
-    return data; 
+    return data;
   } catch (error) {
     console.error('Error in fetchArtists:', error);
-    throw error; 
+    throw error;
   }
 }
 
 export async function fetchArtistById(id) {
   try {
-    const res = await axios.get(`/artists/${id}`);
+const res = await axios.get(`/artists/${id}`);
     return res.data;
   } catch (error) {
     console.error('Error in fetchArtistById:', error);
@@ -30,7 +30,7 @@ export async function fetchArtistById(id) {
   }
 }
 
-export async function fetchArtistsAlbumsById(id) {
+  export async function fetchArtistsAlbumsById(id) {
     try {
       const res = await axios.get(`/artists/${id}/albums`);
       return res.data;
@@ -39,4 +39,6 @@ export async function fetchArtistsAlbumsById(id) {
       throw error;
     }
   }
+
+
 

@@ -12,15 +12,26 @@ const swiper = new Swiper('.feedback-swiper', {
   spaceBetween: 3,
   loop: true,
   pagination: { el: '.swiper-pagination', clickable: true },
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
 
   breakpoints: {
-    0: { slidesPerView: 1 },
-    768: { slidesPerView: 1 },
-    1024: { slidesPerView: 1 },
+    0: {
+      slidesPerView: 1,
+      navigation: false,
+    },
+    768: {
+      slidesPerView: 1,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    },
+    1440: {
+      slidesPerView: 1,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    },
   },
 });
 

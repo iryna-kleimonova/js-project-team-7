@@ -1,4 +1,4 @@
-// тимчасова функція для модального вікна
+
     import { event } from 'jquery';
     import { refs } from './refs';
     import {renderModal} from './render-function';
@@ -30,5 +30,3 @@
         refs.modal.classList.add('hidden');
       }
     });
-
-

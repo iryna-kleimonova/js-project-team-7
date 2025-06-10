@@ -29,14 +29,14 @@
     <script type="module" crossorigin src="/js-project-team-7/index.js"></script>
     <link rel="modulepreload" crossorigin href="/js-project-team-7/assets/vendor-CMkGVHbY.js">
     <link rel="stylesheet" crossorigin href="/js-project-team-7/assets/vendor-Ds_YmOBQ.css">
-    <link rel="stylesheet" crossorigin href="/js-project-team-7/assets/index-Bp_njZwd.css">
+    <link rel="stylesheet" crossorigin href="/js-project-team-7/assets/index-LIgpihSc.css">
   </head>
   <body>
     <header class="header">
   <div class="container header-container">
     <a class="header-logo" href="#" aria-label="main-page-header">
       <svg class="logo" width="119" height="51">
-        <use href="/js-project-team-7/assets/sprite-CtTkG4GV.svg#icon-Content-logo"></use>
+        <use href="/js-project-team-7/assets/sprite-3VxN5qeB.svg#icon-Content-logo"></use>
       </svg>
     </a>
 
@@ -44,7 +44,7 @@
 
       <button type="button" class="burger js-burger" aria-label="Open menu">
         <svg class="burger-icon" width="24" height="24">
-          <use href="/js-project-team-7/assets/sprite-CtTkG4GV.svg#icon-icon-burger-new"></use>
+          <use href="/js-project-team-7/assets/sprite-3VxN5qeB.svg#icon-icon-burger-new"></use>
         </svg>
       </button>
 
@@ -53,12 +53,12 @@
         <li class="nav-menu-header">
           <a class="header-logo mobile-logo" href="#" aria-label="main-page-header">
             <svg class="logo" width="119" height="51">
-              <use href="/js-project-team-7/assets/sprite-CtTkG4GV.svg#icon-Content-logo"></use>
+              <use href="/js-project-team-7/assets/sprite-3VxN5qeB.svg#icon-Content-logo"></use>
             </svg>
           </a>
           <button type="button" class="burger-close js-close" aria-label="Close menu">
             <svg class="close-icon" width="36" height="36">
-              <use href="/js-project-team-7/assets/sprite-CtTkG4GV.svg#icon-menu-close"></use>
+              <use href="/js-project-team-7/assets/sprite-3VxN5qeB.svg#icon-menu-close"></use>
             </svg>
           </button>
         </li>
@@ -85,7 +85,7 @@
       <a href="#artists" class="hero-btn-link">
         Explore Artists
         <svg class="hero-btn-svg" width="24" height="24">
-          <use href="/js-project-team-7/assets/sprite-CtTkG4GV.svg#icon-right-arrow"></use>
+          <use href="/js-project-team-7/assets/sprite-3VxN5qeB.svg#icon-right-arrow"></use>
         </svg>
       </a>
     </div>
@@ -98,6 +98,56 @@
   <div class="container container-artists">
     <h1 class="artists-section-title">Artists</h1>
     <p class="artists-section-subtitle">Explore Your New Favorite Artists</p>
+
+    <!-- search filter -->
+    <div class="filters-wrapper">
+      <p class="filters-text">Filters</p>
+      <button id="toggle-filters" class="toggle-filters">
+        Search and Filters
+        <svg class="icon-arrow-down" width="11" height="7">
+          <use href="../images/sprite.svg#icon-arrow-down-2"></use>
+        </svg>
+      </button>
+      <div id="filters-container" class="filters hidden">
+        <div class="search-container">
+          <button id="search-button" class="search-button">
+            <svg class="icon-search" width="19" height="19">
+              <use href="../images/sprite.svg#icon-search"></use>
+            </svg>
+          </button>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search"
+            class="search-input"
+          />
+        </div>
+        <div class="custom-dropdown" id="sorting-dropdown">
+          <button class="dropdown-button">
+            Sorting
+            <svg class="icon-arrow-down" width="11" height="7">
+              <use href="../images/sprite.svg#icon-arrow-down-2"></use>
+            </svg>
+          </button>
+          <ul class="dropdown-menu hidden" id="sorting-menu">
+            <li data-value="default">Default</li>
+            <li data-value="asc">A–Z</li>
+            <li data-value="desc">Z–A</li>
+          </ul>
+        </div>
+        <div class="custom-dropdown">
+          <button class="dropdown-button" id="genre-button">
+            Genre
+            <svg class="icon-arrow-down" width="11" height="7">
+              <use href="../images/sprite.svg#icon-arrow-down-2"></use>
+            </svg>
+          </button>
+          <ul class="dropdown-menu hidden" id="genre-menu"></ul>
+        </div>
+      </div>
+    </div>
+    <!-- search filter -->
+
     <ul class="artists-list js-artist-list"></ul>
     <div class="loader visually-hidden" id="loader">
       <span class="loader-spinner"></span>
@@ -105,7 +155,7 @@
     <button class="load-more-btn" type="button">
       Load More
       <svg class="load-more-btn-icon" width="24" height="25">
-        <use href="/js-project-team-7/assets/sprite-CtTkG4GV.svg#icon-down-arrow-alt"></use>
+        <use href="/js-project-team-7/assets/sprite-3VxN5qeB.svg#icon-down-arrow-alt"></use>
       </svg>
     </button>
   </div>
@@ -178,7 +228,7 @@
     </div>
     <div class="about-text-container">
       <svg class="about-icon">
-        <use href="/js-project-team-7/assets/sprite-CtTkG4GV.svg#icon-logo-icon"></use>
+        <use href="/js-project-team-7/assets/sprite-3VxN5qeB.svg#icon-logo-icon"></use>
       </svg>
       <h2 class="about-title">About ArtistsHub</h2>
       <p class="about-text">
@@ -196,12 +246,12 @@
 
     <div class="feedback-prev">
       <svg class="left-arrow-icon" width="24" height="24">
-        <use href="/js-project-team-7/assets/sprite-CtTkG4GV.svg#icon-left-arrow-alt"></use>
+        <use href="/js-project-team-7/assets/sprite-3VxN5qeB.svg#icon-left-arrow-alt"></use>
       </svg>
     </div>
     <div class="feedback-next">
       <svg class="right-arrow-icon" width="24" height="24">
-        <use href="/js-project-team-7/assets/sprite-CtTkG4GV.svg#icon-right-arrow-alt"></use>
+        <use href="/js-project-team-7/assets/sprite-3VxN5qeB.svg#icon-right-arrow-alt"></use>
       </svg>
     </div>
 
@@ -216,7 +266,7 @@
     <div class="footer__top">
       <a href="#hero" class="footer__logo js-logo">
         <svg class="footer__logo-icon" width="116" height="45">
-          <use href="/js-project-team-7/assets/sprite-CtTkG4GV.svg#icon-Content-logo"></use>
+          <use href="/js-project-team-7/assets/sprite-3VxN5qeB.svg#icon-Content-logo"></use>
         </svg>
       </a>
       <ul class="footer__nav js-footer-nav">
@@ -241,7 +291,7 @@
           rel="noopener noreferrer"
         >
           <svg width="24" height="24">
-            <use href="/js-project-team-7/assets/sprite-CtTkG4GV.svg#icon-instagram"></use>
+            <use href="/js-project-team-7/assets/sprite-3VxN5qeB.svg#icon-instagram"></use>
           </svg>
         </a>
         <a
@@ -252,7 +302,7 @@
           rel="noopener noreferrer"
         >
           <svg width="24" height="24">
-            <use href="/js-project-team-7/assets/sprite-CtTkG4GV.svg#icon-facebook"></use>
+            <use href="/js-project-team-7/assets/sprite-3VxN5qeB.svg#icon-facebook"></use>
           </svg>
         </a>
         <a
@@ -263,7 +313,7 @@
           rel="noopener noreferrer"
         >
           <svg width="24" height="24">
-            <use href="/js-project-team-7/assets/sprite-CtTkG4GV.svg#icon-youtube"></use>
+            <use href="/js-project-team-7/assets/sprite-3VxN5qeB.svg#icon-youtube"></use>
           </svg>
         </a>
       </div>

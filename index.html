@@ -29,7 +29,7 @@
     <script type="module" crossorigin src="/js-project-team-7/index.js"></script>
     <link rel="modulepreload" crossorigin href="/js-project-team-7/assets/vendor-Cj1XzFCq.js">
     <link rel="stylesheet" crossorigin href="/js-project-team-7/assets/vendor-Ds_YmOBQ.css">
-    <link rel="stylesheet" crossorigin href="/js-project-team-7/assets/index-CMRs4_1W.css">
+    <link rel="stylesheet" crossorigin href="/js-project-team-7/assets/index-DPdg9NVi.css">
   </head>
   <body>
     <header class="header">
@@ -99,8 +99,21 @@
     <h1 class="artists-section-title">Artists</h1>
     <p class="artists-section-subtitle">Explore Your New Favorite Artists</p>
 
-    <!-- search filter -->
-    <!-- <div class="filters-wrapper">
+    <ul class="artists-list js-artist-list"></ul>
+    <div class="loader visually-hidden" id="loader">
+      <span class="loader-spinner"></span>
+    </div>
+    <button class="load-more-btn" type="button">
+      Load More
+      <svg class="load-more-btn-icon" width="24" height="25">
+        <use href="/js-project-team-7/assets/sprite-3VxN5qeB.svg#icon-down-arrow-alt"></use>
+      </svg>
+    </button>
+  </div>
+</section>
+
+<!-- search filter -->
+<!-- <div class="filters-wrapper">
       <p class="filters-text">Filters</p>
       <button id="toggle-filters" class="toggle-filters">
         Search and Filters
@@ -146,28 +159,20 @@
         </div>
       </div>
     </div> -->
-    <!-- search filter -->
-
-    <ul class="artists-list js-artist-list"></ul>
-    <div class="loader visually-hidden" id="loader">
-      <span class="loader-spinner"></span>
-    </div>
-    <button class="load-more-btn" type="button">
-      Load More
-      <svg class="load-more-btn-icon" width="24" height="25">
-        <use href="/js-project-team-7/assets/sprite-3VxN5qeB.svg#icon-down-arrow-alt"></use>
-      </svg>
-    </button>
-  </div>
-</section>
+<!-- search filter -->
 
       <div class="js-modal modal hidden">
   <div class="js-modal-content modal-content">
+    <div class="modal-loader" id="modal-loader">
+      <span class="spinner"></span>
+    </div>
+
     <button class="js-modal-close modal-close">
       <svg width="32" height="32">
         <use href="/js-project-team-7/assets/sprite-3VxN5qeB.svg#icon-modal-close"></use>
       </svg>
     </button>
+
     <div class="js-modal-body modal-body">
       <section class="artists-info"></section>
       <section class="artists-albums"></section>

@@ -1,6 +1,7 @@
 import { refs } from './refs.js';
 import spriteUrl from '../images/sprite.svg?url';
 
+// рендеринг списку артистів
 export function renderArtists(data) {
   const markup = data.artists
     .map(artist => {
@@ -37,6 +38,7 @@ export function renderArtists(data) {
 
   refs.artistCardsContainer.insertAdjacentHTML('beforeend', markup);
 }
+
 // функції для модального вікна
 const artistInfo = document.querySelector('.artists-info');
 const artistAlbums = document.querySelector('.artists-albums');
@@ -69,6 +71,7 @@ export function renderModal(artistData) {
     <div class="artist-img-container">
         <img src="${strArtistThumb || ''}" alt="${strArtist}" />
       </div>
+      <div class="artist-top">
       <ul class="artist-meta-list"> 
           <li class="artist-meta-list-item"><b>Years active</b><br>
             <p>${yearsActive}</p>
@@ -90,6 +93,7 @@ export function renderModal(artistData) {
       </div>
       <div class="artist-genres">
         ${genresMarkup}
+      </div>
       </div>
     </div>
     </div>
@@ -156,6 +160,7 @@ export function renderAlbums(albumsList = []) {
   artistAlbums.innerHTML = albumsMarkup;
 }
 
+// функція для форматування тривалості
 function formatDuration(ms) {
   const totalSeconds = Math.floor(ms / 1000);
   const minutes = Math.floor(totalSeconds / 60);
@@ -163,7 +168,6 @@ function formatDuration(ms) {
   return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
 
-//
 export function showLoadMoreBtn() {
   refs.loadMoreBtn.classList.remove('visually-hidden');
 }
@@ -180,6 +184,7 @@ export function hideLoader() {
   refs.loader.classList.add('visually-hidden');
 }
 
+// рендеринг зірочок рейтингу
 export function renderStars(containerSelector, rating) {
   const container =
     typeof containerSelector === 'string'
@@ -188,7 +193,6 @@ export function renderStars(containerSelector, rating) {
 
   if (!container) return;
 
-  // Створюємо елемент зірок
   const starDiv = document.createElement('div');
   starDiv.className = 'stars';
 

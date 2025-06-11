@@ -12,6 +12,7 @@ import {
   hideLoader,
 } from './render-function.js';
 import { refs } from './refs.js';
+import { showModalLoader, hideModalLoader } from './modal.js';
 
 const loader = document.getElementById('loader');
 
@@ -59,6 +60,7 @@ refs.artistCardsContainer.addEventListener('click', async e => {
   }
 
   try {
+    showModalLoader();
     const artistFromCard = JSON.parse(decodeURIComponent(raw));
 
     const artistFromApi = await fetchArtistById(artistFromCard._id);
@@ -72,6 +74,8 @@ refs.artistCardsContainer.addEventListener('click', async e => {
     openArtistModal({ artist: mergedArtist, albums });
   } catch (error) {
     console.error('Failed to open artist modal:', error);
+  } finally {
+    hideModalLoader();
   }
 });
 

@@ -2,6 +2,36 @@
   display: none !important;
 }
 
+.modal-loader {
+  display: none;
+}
+
+.modal-loader.active {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5000;
+  pointer-events: none;
+  display: block;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid rgba(255, 255, 255, 0.2);
+  border-top: 5px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 body.modal-open {
   overflow: hidden;
   position: fixed;
@@ -11,7 +41,7 @@ body.modal-open {
 .modal {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.482);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,14 +57,11 @@ body.modal-open {
   margin: 0 auto;
   max-height: 90vh;
   overflow-y: auto;
-  padding: 52px 8px 52px 8px;
-  box-sizing: border-box;
-
+  padding: 52px 8px;
   position: relative;
 }
 
 .modal-body {
-  gap: 24px;
   overflow: visible;
 }
 
@@ -52,12 +79,6 @@ body.modal-open {
   fill: #ffffff;
 }
 
-.modal-artist-info {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
 .artist-title {
   font-family: 'Epilogue', sans-serif;
   font-weight: 700;
@@ -65,13 +86,14 @@ body.modal-open {
   line-height: 1.3;
   letter-spacing: -0.01em;
   text-align: center;
-  color: #fff;
 
   margin-bottom: 16px;
 }
 
-.artist-img-container {
-  margin-bottom: 16px;
+.modal-artist-info {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
 .artist-img-container img {
@@ -79,6 +101,12 @@ body.modal-open {
   height: 167px;
   object-fit: cover;
   border-radius: 16px;
+}
+
+.artist-top {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .artist-meta-list {
@@ -97,8 +125,6 @@ body.modal-open {
 
 .artist-meta-list p {
   font-weight: 400;
-  font-size: 18px;
-  line-height: 1.5;
 }
 
 /* Біографія */
@@ -110,11 +136,6 @@ body.modal-open {
 }
 
 .artist-biography {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: column;
-  gap: 0px;
   width: 272px;
 }
 
@@ -176,8 +197,8 @@ body.modal-open {
 }
 
 .albums-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 32px;
 }
 
@@ -193,7 +214,7 @@ body.modal-open {
   font-weight: 600;
   font-size: 16px;
   line-height: 1.5;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .track-header {
@@ -213,8 +234,8 @@ body.modal-open {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 12px;
-  padding: 12px 12px;
+  border-radius: 8px;
+  padding: 8px 12px;
 
   transition: background-color 0.2s ease;
 
@@ -254,6 +275,7 @@ body.modal-open {
 }
 
 .track-link:hover svg {
+  fill: #a855f7;
   transform: scale(1.1);
 }
 
@@ -272,9 +294,103 @@ body.modal-open {
     padding: 64px 24px;
   }
 
-  /* Заголовок */
+  .modal-close {
+    right: 47px;
+  }
+
   .artist-title {
     font-size: 32px;
+
     margin-bottom: 48px;
+  }
+
+  .artist-img-container img {
+    width: 654px;
+    height: 402px;
+  }
+
+  .artist-top {
+    gap: 24px;
+  }
+
+  .artist-meta-list {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
+    gap: 24px;
+  }
+
+  .artist-bottom {
+    gap: 24px;
+  }
+
+  .artist-biography {
+    width: 654px;
+  }
+
+  .artist-genres {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .albums-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .album {
+    width: calc((100% - 32px) / 2);
+    min-width: 311px;
+  }
+
+  .track-item {
+    padding: 7px 12px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .modal {
+    padding: 64px;
+  }
+
+  .modal-content {
+    max-width: 1312px;
+    padding: 64px;
+  }
+
+  .modal-close {
+    right: 16px;
+  }
+
+  .modal-artist-info {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+  }
+
+  .artist-img-container img {
+    width: 576px;
+    height: 354px;
+  }
+
+  .artist-biography {
+    width: 576px;
+  }
+
+  .artist-biography-desc {
+    max-height: 135px;
+  }
+
+  .albums-list {
+    grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
+  }
+
+  .album {
+    width: calc((100% - 96px) / 4);
+    min-width: 272px;
   }
 }

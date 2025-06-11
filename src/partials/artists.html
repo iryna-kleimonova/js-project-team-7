@@ -3,8 +3,21 @@
     <h1 class="artists-section-title">Artists</h1>
     <p class="artists-section-subtitle">Explore Your New Favorite Artists</p>
 
-    <!-- search filter -->
-    <!-- <div class="filters-wrapper">
+    <ul class="artists-list js-artist-list"></ul>
+    <div class="loader visually-hidden" id="loader">
+      <span class="loader-spinner"></span>
+    </div>
+    <button class="load-more-btn" type="button">
+      Load More
+      <svg class="load-more-btn-icon" width="24" height="25">
+        <use href="/images/sprite.svg#icon-down-arrow-alt"></use>
+      </svg>
+    </button>
+  </div>
+</section>
+
+<!-- search filter -->
+<!-- <div class="filters-wrapper">
       <p class="filters-text">Filters</p>
       <button id="toggle-filters" class="toggle-filters">
         Search and Filters
@@ -50,17 +63,4 @@
         </div>
       </div>
     </div> -->
-    <!-- search filter -->
-
-    <ul class="artists-list js-artist-list"></ul>
-    <div class="loader visually-hidden" id="loader">
-      <span class="loader-spinner"></span>
-    </div>
-    <button class="load-more-btn" type="button">
-      Load More
-      <svg class="load-more-btn-icon" width="24" height="25">
-        <use href="/images/sprite.svg#icon-down-arrow-alt"></use>
-      </svg>
-    </button>
-  </div>
-</section>
+<!-- search filter -->

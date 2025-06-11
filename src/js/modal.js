@@ -1,8 +1,6 @@
 import { refs } from './refs';
 import { renderModal, renderAlbums } from './render-function';
 
-const { modal, modalCloseBtn, modalContent } = refs;
-
 export function openArtistModal({ artist, albums }) {
   const artistData = {
     ...artist,
@@ -13,9 +11,10 @@ export function openArtistModal({ artist, albums }) {
   renderAlbums(artistData.albumsList);
   refs.modal.classList.remove('hidden');
   document.body.classList.add('modal-open');
+  hideModalLoader();
 }
-// ---- додавання та видалення слухачів для модального вікна ------------
 
+// додавання та видалення слухачів для модального вікна
 document.addEventListener('click', event => {
   if (event.target.closest('.js-modal-close')) {
     refs.modal.classList.add('hidden');
@@ -44,4 +43,12 @@ function removeListeners() {
   document.removeEventListener('click', this);
   document.removeEventListener('keydown', this);
   refs.modal.removeEventListener('click', this);
+}
+
+export function showModalLoader() {
+  refs.modalLoader.classList.add('active');
+}
+
+export function hideModalLoader() {
+  refs.modalLoader.classList.remove('active');
 }

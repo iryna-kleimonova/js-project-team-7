@@ -102,7 +102,7 @@ body.modal-open {
 }
 
 .artist-img-container {
-  margin-bottom: 16px;
+  margin-bottom: 32px;
 }
 .artist-img-container img {
   width: 272px;
@@ -111,17 +111,49 @@ body.modal-open {
   border-radius: 16px;
 }
 
-.artist-meta-list {
+/* .artist-meta-list {
   display: flex;
   flex-direction: column;
   gap: 16px;
   margin-bottom: 16px;
+} */
+
+/* Інформація*/
+.artist-img-container-first,
+.artist-img-container-second {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 0px;
+  width: 272px;
+  height: 124px;
+  margin-bottom: 16px;
 }
 .artist-meta-list li {
+  font-family: 'IBM Plex Sans', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.artist-meta-list p {
   font-weight: 400;
   font-size: 18px;
-
   line-height: 1.5;
+}
+/* Біографія */
+.artist-biography {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 0px;
+  width: 272px;
+  overflow-y: auto;
+  padding: 0;
+  margin-bottom: 16px;
 }
 
 .artist-biography-title {
@@ -135,12 +167,14 @@ body.modal-open {
   font-size: 18px;
   line-height: 1.5;
 }
-
+/* Жанри */
 .artist-genres {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
   gap: 16px;
-
   margin-bottom: 16px;
 }
 
@@ -161,6 +195,7 @@ body.modal-open {
   font-size: 24px;
   line-height: 1.3;
   letter-spacing: -0.01em;
+  margin-bottom: 16px;
 }
 
 .album {
@@ -171,14 +206,13 @@ body.modal-open {
   width: 272px;
   min-width: 250px;
 }
-
+/* 
 .album-title {
   font-weight: 600;
   font-size: 16px;
   line-height: 1.5;
-
-  margin-bottom: 12px;
-}
+  margin-bottom: 16px;
+} */
 
 .track-header {
   display: flex;
@@ -247,4 +281,25 @@ body.modal-open {
 .track-link.empty {
   color: #666;
   font-size: 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 33px;
+  }
+  .modal-content {
+    padding: 64px 24px;
+    max-width: 100%;
+    max-height: 100vh;
+  }
+
+  /* Заголовок */
+  .artist-title {
+    font-size: 32px;
+    margin-bottom: 48px;
+  }
 }

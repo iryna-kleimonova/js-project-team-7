@@ -31,31 +31,22 @@ export async function fetchArtistById(id) {
 }
 
 export async function fetchArtistsAlbumsById(id) {
-
   try {
     const res = await axios.get(`/artists/${id}/albums`);
-    return res.data.albumsList; 
+    return res.data.albumsList;
   } catch (error) {
     console.error('Error in fetchArtistsAlbumsById:', error);
     throw error;
   }
 }
-    try {
-      const res = await axios.get(`/artists/${id}/albums`);
-      return res.data;
-    } catch (error) {
-      console.error('Error in fetchArtistsAlbumsById:', error);
-      throw error;
-    }
-
-  
 
 // search filter
 export async function fetchGenres() {
   try {
-    const response = await axios.get('/genres'); 
+    const response = await axios.get('/genres');
     return response.data;
-  } catch (error) {``
+  } catch (error) {
+    ``;
   }
 }
 
@@ -63,7 +54,5 @@ export async function fetchArtistsByGenre(genre) {
   try {
     const response = await axios.get(`/artists?genre=${genre}`);
     return response.data;
-  } catch (error) {
-  }
+  } catch (error) {}
 }
-

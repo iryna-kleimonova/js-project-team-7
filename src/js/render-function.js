@@ -35,10 +35,9 @@ export function renderArtists(data) {
 
   refs.artistCardsContainer.insertAdjacentHTML('beforeend', markup);
 }
-
-// Функції для модального вікна
+// функції для модального вікна
 const artistInfo = document.querySelector('.artists-info');
-const artistAlboms = document.querySelector('.artists-alboms');
+const artistAlbums = document.querySelector('.artists-albums');
 
 export function renderModal(artistData) {
   const {
@@ -148,9 +147,11 @@ export function renderAlbums(albumsList = []) {
     })
     .join('');
 
-  artistAlboms.innerHTML = albumsMarkup;
+   
+  // artistAlbums.innerHTML = albumsMarkup;
 }
 
+//
 export function showLoadMoreBtn() {
   refs.loadMoreBtn.classList.remove('visually-hidden');
 }

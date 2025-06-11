@@ -1,4 +1,4 @@
-import { event } from 'jquery';
+
 import { refs } from './refs';
 import { renderModal, renderAlbums } from './render-function';
 

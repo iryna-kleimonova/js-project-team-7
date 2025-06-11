@@ -6,7 +6,9 @@ export function renderArtists(data) {
     .map(artist => {
       const { _id, strArtist, strBiographyEN, strArtistThumb, genres } = artist;
       return `
-        <li class="artist-card" data-id="${_id}">
+        <li class="artist-card" data-id="${_id}" data-artist="${encodeURIComponent(
+        JSON.stringify(artist)
+      )}">
           <img class="artist-card-img" src="${strArtistThumb}" alt="${strArtist}" />
 
           <ul class="artist-card-genres">
@@ -58,9 +60,7 @@ export function renderModal(artistData) {
     : '-';
 
   const genresMarkup = genresList.length
-    ? genresList
-        .map(genre => `<button class="genre-btn">${genre}</button>`)
-        .join('')
+    ? genresList.map(genre => `<p class="genre-item">${genre}</з>`).join('')
     : '-';
 
   const markupModal = `
@@ -81,38 +81,43 @@ export function renderModal(artistData) {
         <p class="artist-biography-desc">${strBiographyEN}</p>
       </div>
       <div class="artist-genres">
-        <h3>Genres</h3>
         ${genresMarkup}
       </div>
     </div>
   `;
-
   artistInfo.innerHTML = markupModal;
 }
-
-// refs.modal.classList.remove('hidden');
 
 // функція для альбомів
 export function renderAlbums(albumsList = []) {
   artistAlbums.innerHTML = ''; // очищення перед новим рендером
 
   if (!albumsList.length) {
-    artistAlbums.innerHTML = '<p>-</p>';
+    artistAlbums.innerHTML = '<h4>-</h4>';
     return;
   }
 
-  const albumsMarkup = albumsList
+  const albumsMarkup = `
+    <h2 class="albums-title">Albums</h2>
+  ${albumsList
     .map(album => {
       const tracksMarkup =
         album.tracks && album.tracks.length
-          ? album.tracks
-              .map(
-                track => `
+          ? `
+              <ul class="track-list">
+                <li class="track-header">
+                  <span>Track</span>
+                  <span>Time</span>
+                  <span>Link</span>
+                </li>
+              ${album.tracks
+                .map(
+                  track => `
                 <li class="track-item">
                   <span class="track-name">${track.strTrack || '-'}</span>
-                  <span class="track-duration">${
-                    track.intDuration || '-'
-                  }</span>
+                  <span class="track-duration">
+  ${track.intDuration ? formatDuration(track.intDuration) : '-'}
+</span>
                   ${
                     track.movie
                       ? `<a class="track-link" href="${track.movie}" target="_blank" rel="noopener noreferrer">
@@ -120,24 +125,31 @@ export function renderAlbums(albumsList = []) {
                             <use href="${spriteUrl}#icon-youtube"></use>
                           </svg>
                         </a>`
-                      : `<p class="track-link empty">-</p>`
+                      : `<span class="track-link empty"></span>`
                   }
-                </li>`
-              )
-              .join('')
-          : '<li>-</li>';
+                    </li>`
+                )
+                .join('')}
+              </ul>`
+          : '<p>No tracks</p>';
 
       return `
-        <div class="album">
-          
-          <h4>${album.strAlbum || '-'}</h4>
-          <p><b>Year Released:</b> ${album.intYearReleased || '-'}</p>
-          <ul class="track-list">${tracksMarkup}</ul>
-        </div>`;
+          <div class="album">
+            <h3 class="album-title">${album.strAlbum || '-'}</h3>
+            ${tracksMarkup}
+          </div>`;
     })
-    .join('');
+    .join('')}
+  `;
 
   artistAlbums.innerHTML = albumsMarkup;
+}
+
+function formatDuration(ms) {
+  const totalSeconds = Math.floor(ms / 1000);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
 
 //

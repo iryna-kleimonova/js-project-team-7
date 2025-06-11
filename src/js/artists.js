@@ -47,7 +47,6 @@ refs.loadMoreBtn.addEventListener('click', () => {
 
 refs.artistCardsContainer.addEventListener('click', async e => {
   const button = e.target.closest('.artist-card-btn');
-  
 
   if (!button) return;
 
@@ -61,7 +60,6 @@ refs.artistCardsContainer.addEventListener('click', async e => {
 
   try {
     const artistFromCard = JSON.parse(decodeURIComponent(raw));
-    // console.log('🎯 Artist from card (has genres):', artistFromCard);
 
     const artistFromApi = await fetchArtistById(artistFromCard._id);
     const albums = await fetchArtistsAlbumsById(artistFromCard._id);

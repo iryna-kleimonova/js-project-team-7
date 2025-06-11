@@ -16,8 +16,7 @@ export function openArtistModal({ artist, albums }) {
 }
 // ---- додавання та видалення слухачів для модального вікна ------------
 
-
-document.addEventListener('click', (event) => {
+document.addEventListener('click', event => {
   if (event.target.closest('.js-modal-close')) {
     refs.modal.classList.add('hidden');
     document.body.classList.remove('modal-open');
@@ -25,16 +24,18 @@ document.addEventListener('click', (event) => {
   }
 });
 
-document.addEventListener('keydown', (event) => {
+document.addEventListener('keydown', event => {
   if (event.key === 'Escape') {
     refs.modal.classList.add('hidden');
+    document.body.classList.remove('modal-open');
     removeListeners();
   }
 });
 
-refs.modal.addEventListener('click', (event) => {
+refs.modal.addEventListener('click', event => {
   if (event.target === refs.modal) {
     refs.modal.classList.add('hidden');
+    document.body.classList.remove('modal-open');
     removeListeners();
   }
 });

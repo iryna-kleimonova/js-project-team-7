@@ -69,23 +69,19 @@ export function renderModal(artistData) {
       <div class="artist-img-container">
         <img src="${strArtistThumb || ''}" alt="${strArtist}" />
       </div>
-      <ul class="artist-meta-list">
-        <div class="artist-img-container-first">
-          <li><b>Years active</b><br>
+      <ul class="artist-meta-list"> 
+          <li class="artist-meta-list-item"><b>Years active</b><br>
             <p>${yearsActive}</p>
           </li>
-          <li><b>Sex</b><br>
+          <li class="artist-meta-list-item"><b>Sex</b><br>
             <p>${strGender}</p>
           </li>
-        </div>
-        <div class="artist-img-container-second">
-          <li><b>Members</b><br>
+          <li class="artist-meta-list-item"><b>Members</b><br>
             <p>${intMembers != null ? intMembers : '-'}</p>
           </li>
-          <li><b>Country</b><br>
+          <li class="artist-meta-list-item"<b>Country</b><br>
             <p>${strCountry}</p>
           </li>
-        </div>
       </ul>
       
       <div class="artist-biography">
@@ -102,7 +98,7 @@ export function renderModal(artistData) {
 
 // функція для альбомів
 export function renderAlbums(albumsList = []) {
-  artistAlbums.innerHTML = ''; // очищення перед новим рендером
+  artistAlbums.innerHTML = '';
 
   if (!albumsList.length) {
     artistAlbums.innerHTML = '<h4>-</h4>';
@@ -200,39 +196,39 @@ export function renderStars(containerSelector, rating) {
 }
 
 // search filter
-import { fetchGenres } from './api-service.js';
+// import { fetchGenres } from './api-service.js';
 
-export async function renderGenres() {
-  const genres = await fetchGenres();
+// export async function renderGenres() {
+//   const genres = await fetchGenres();
 
-  refs.genreMenu.innerHTML = genres
-    .map(genre => `<li data-genre="${genre.genre}">${genre.genre}</li>`)
-    .join('');
-}
+//   refs.genreMenu.innerHTML = genres
+//     .map(genre => `<li data-genre="${genre.genre}">${genre.genre}</li>`)
+//     .join('');
+// }
 
-export function sortArtists(sortType) {
-  const artists = [...refs.artistCardsContainer.children];
+// export function sortArtists(sortType) {
+//   const artists = [...refs.artistCardsContainer.children];
 
-  if (sortType === 'az') {
-    artists.sort((a, b) =>
-      a
-        .querySelector('.artist-card-name')
-        .textContent.localeCompare(
-          b.querySelector('.artist-card-name').textContent
-        )
-    );
-  } else if (sortType === 'za') {
-    artists.sort((a, b) =>
-      b
-        .querySelector('.artist-card-name')
-        .textContent.localeCompare(
-          a.querySelector('.artist-card-name').textContent
-        )
-    );
-  } else {
-    return;
-  }
+//   if (sortType === 'az') {
+//     artists.sort((a, b) =>
+//       a
+//         .querySelector('.artist-card-name')
+//         .textContent.localeCompare(
+//           b.querySelector('.artist-card-name').textContent
+//         )
+//     );
+//   } else if (sortType === 'za') {
+//     artists.sort((a, b) =>
+//       b
+//         .querySelector('.artist-card-name')
+//         .textContent.localeCompare(
+//           a.querySelector('.artist-card-name').textContent
+//         )
+//     );
+//   } else {
+//     return;
+//   }
 
-  refs.artistCardsContainer.innerHTML = '';
-  artists.forEach(artist => refs.artistCardsContainer.appendChild(artist));
-}
+//   refs.artistCardsContainer.innerHTML = '';
+//   artists.forEach(artist => refs.artistCardsContainer.appendChild(artist));
+// }

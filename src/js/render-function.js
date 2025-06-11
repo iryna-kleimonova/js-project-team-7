@@ -35,11 +35,9 @@ export function renderArtists(data) {
 
   refs.artistCardsContainer.insertAdjacentHTML('beforeend', markup);
 }
-
-// Функції для модального вікна
+// функції для модального вікна
 const artistInfo = document.querySelector('.artists-info');
-const artistAlboms = document.querySelector('.artists-alboms');
-
+const artistAlbums = document.querySelector('.artists-albums');
 export function renderModal(artistData) {
   const {
     strArtist = '-',
@@ -66,15 +64,14 @@ export function renderModal(artistData) {
     : '-';
 
   const markupModal = `
-    <div>
     <div class="close-button">
       <button class="js-modal-close modal-close">
         <svg width="32" height="32">
-        <use href="../images/sprite.svg#icon-menu-close"></use>
+          <use href="../images/sprite.svg#icon-menu-close"></use>
         </svg>
+      </button>
     </div>
-      <h2 class="artist-title">${strArtist}</h2>
-    </div>
+    <h2 class="artist-title">${strArtist}</h2>
     <div class="modal-artist-info">
       <div class="artist-img-container">
         <img src="${strArtistThumb || ''}" alt="${strArtist}" />
@@ -93,22 +90,20 @@ export function renderModal(artistData) {
         <h3>Biography</h3>
         <p>${strBiographyEN}</p>
       </div>
-      <div class="artist-albums">
-        <h3>Albums</h3>
-        <div id="albums-container">Loading albums...</div> <!-- місце для альбомів -->
-      </div>
-    </div>`;
+    </div>
+  `;
 
   artistInfo.innerHTML = markupModal;
-  refs.modal.classList.remove('hidden');
 }
+
+refs.modal.classList.remove('hidden');
 
 // функція для альбомів
 export function renderAlbums(albumsList = []) {
-  const container = document.querySelector('#albums-container');
+  artistAlbums.innerHTML = ''; // очищення перед новим рендером
 
   if (!albumsList.length) {
-    container.innerHTML = '<p>-</p>';
+    artistAlbums.innerHTML = '<p>-</p>';
     return;
   }
 
@@ -119,19 +114,21 @@ export function renderAlbums(albumsList = []) {
           ? album.tracks
               .map(
                 track => `
-              <li class="track-item">
-                <span class="track-name">${track.strTrack || '-'}</span>
-                <span class="track-duration">${track.intDuration || '-'}</span>
-                ${
-                  track.movie
-                    ? `<a class="track-link" href="${track.movie}" target="_blank" rel="noopener noreferrer">
+                <li class="track-item">
+                  <span class="track-name">${track.strTrack || '-'}</span>
+                  <span class="track-duration">${
+                    track.intDuration || '-'
+                  }</span>
+                  ${
+                    track.movie
+                      ? `<a class="track-link" href="${track.movie}" target="_blank" rel="noopener noreferrer">
                           <svg width="24" height="24">
                             <use href="../images/sprite.svg#icon-youtube"></use>
                           </svg>
-                      </a>`
-                    : `<p class="track-link empty">-</p>`
-                }
-              </li>`
+                        </a>`
+                      : `<p class="track-link empty">-</p>`
+                  }
+                </li>`
               )
               .join('')
           : '<li>-</li>';
@@ -148,9 +145,10 @@ export function renderAlbums(albumsList = []) {
     })
     .join('');
 
-  artistAlboms.innerHTML = albumsMarkup;
+  artistAlbums.innerHTML = albumsMarkup;
 }
 
+//
 export function showLoadMoreBtn() {
   refs.loadMoreBtn.classList.remove('visually-hidden');
 }

@@ -13,14 +13,16 @@ const swiper = new Swiper('.feedback-swiper', {
   loop: true,
   pagination: { el: '.swiper-pagination', clickable: true },
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+    // nextEl: '.swiper-button-next',
+    // prevEl: '.swiper-button-prev',
+    nextEl: '.feedback-next',
+    prevEl: '.feedback-prev',
   },
 
   breakpoints: {
     0: { slidesPerView: 1 },
     768: { slidesPerView: 1 },
-    1024: { slidesPerView: 1 },
+    1440: { slidesPerView: 1 },
   },
 });
 
@@ -108,7 +110,7 @@ async function fetchFeedbacks() {
         </div>
       `;
       container.appendChild(slide);
-      initializeRaty(`#${ratingId}`, fb.rating);
+      renderStars(`#${ratingId}`, fb.rating);
     });
 
     swiper.update();
@@ -117,25 +119,22 @@ async function fetchFeedbacks() {
   }
 }
 
-function smartRoundScore(rating) {
-  const decimal = rating % 1;
+function renderStars(containerSelector, rating) {
+  const container =
+    typeof containerSelector === 'string'
+      ? document.querySelector(containerSelector)
+      : containerSelector;
 
-  if (decimal === 0.5) {
-    return rating;
-  }
+  if (!container) return;
 
-  return Math.round(rating);
-}
+  // Створюємо елемент зірок
+  const starDiv = document.createElement('div');
+  starDiv.className = 'stars';
 
-function initializeRaty(selector, rating) {
-  $(selector).raty({
-    readOnly: true,
-    score: smartRoundScore(rating),
-    half: true,
-    starOn: './images/star-on.svg',
-    starOff: './images/star-off.svg',
-    starHalf: './images/star-half.svg',
-  });
+  const percent = Math.min(100, Math.max(0, (rating / 5) * 100));
+  starDiv.style.setProperty('--rating-percent', `${percent}%`);
+
+  container.appendChild(starDiv);
 }
 
 fetchFeedbacks();

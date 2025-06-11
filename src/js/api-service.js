@@ -22,7 +22,7 @@ export async function fetchArtists(page = 1, limit = 8) {
 
 export async function fetchArtistById(id) {
   try {
-const res = await axios.get(`/artists/${id}`);
+    const res = await axios.get(`/artists/${id}`);
     return res.data;
   } catch (error) {
     console.error('Error in fetchArtistById:', error);
@@ -30,15 +30,12 @@ const res = await axios.get(`/artists/${id}`);
   }
 }
 
-  export async function fetchArtistsAlbumsById(id) {
-    try {
-      const res = await axios.get(`/artists/${id}/albums`);
-      return res.data;
-    } catch (error) {
-      console.error('Error in fetchArtistsAlbumsById:', error);
-      throw error;
-    }
+export async function fetchArtistsAlbumsById(id) {
+  try {
+    const res = await axios.get(`/artists/${id}/albums`);
+    return res.data.albumsList; 
+  } catch (error) {
+    console.error('Error in fetchArtistsAlbumsById:', error);
+    throw error;
   }
-
-
-
+}

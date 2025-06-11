@@ -1,105 +1,168 @@
 import { refs } from './refs.js';
-import { fetchArtistsAlbumsById } from './api-service.js';
+import spriteUrl from '../images/sprite.svg?url';
 
 export function renderArtists(data) {
   const markup = data.artists
     .map(artist => {
       const { _id, strArtist, strBiographyEN, strArtistThumb, genres } = artist;
       return `
-              <li class="artist-card" data-id="${_id}">
-              
-                <img class="artist-card-img" src="${strArtistThumb}" alt="${strArtist}" />
-            
-                <ul class="artist-card-genres">
-                  ${genres.map(genre => `<li>${genre}</li>`).join('') || ''}
-                </ul>
+        <li class="artist-card" data-id="${_id}">
+          <img class="artist-card-img" src="${strArtistThumb}" alt="${strArtist}" />
 
-                <h3 class="artist-card-name">${strArtist}</h3>
-            
-                <p class="artist-card-info">
-                  ${
-                    strBiographyEN
-                      ? strBiographyEN.slice(0, 100) + '...'
-                      : 'No description available'
-                  }
-                </p>
-            
-                <button class="artist-card-btn" type="button">
-                 Learn More
-                 <svg class="artist-card-icon" width="24" height="24">
-                 <use href="./images/sprite.svg#icon-caret-right"></use>
-                 </svg>
-                </button>
-              </li>
-            `;
+          <ul class="artist-card-genres">
+            ${genres.map(genre => `<li>${genre}</li>`).join('')}
+          </ul>
+
+          <h3 class="artist-card-name">${strArtist}</h3>
+
+          <p class="artist-card-info">
+            ${
+              strBiographyEN
+                ? strBiographyEN.slice(0, 100) + '...'
+                : 'No description available'
+            }
+          </p>
+
+          <button class="artist-card-btn" type="button">
+            Learn More
+            <svg class="artist-card-icon" width="24" height="24">
+              <use href="${spriteUrl}#icon-caret-right"></use>
+            </svg>
+          </button>
+        </li>`;
     })
     .join('');
 
   refs.artistCardsContainer.insertAdjacentHTML('beforeend', markup);
 }
+// функції для модального вікна
+const artistInfo = document.querySelector('.artists-info');
+const artistAlboms = document.querySelector('.artists-alboms');
 
-export function renderArtistInfo(artistData) {
+export function renderModal(artistData) {
   const {
     strArtist = '-',
     strArtistThumb,
-    strLabel = '-',
-    intFormedYear = '-',
+    intFormedYear,
     intDiedYear,
     strGender = '-',
-    intMembers = '-',
+    intMembers,
     strCountry = '-',
     strBiographyEN = '-',
     genresList = [],
   } = artistData;
 
-  const genres = genresList.length ? genresList.join(', ') : '-';
+  const yearsActive = intFormedYear
+    ? intDiedYear
+      ? `${intFormedYear} - ${intDiedYear}`
+      : `${intFormedYear} - present`
+    : '-';
 
-  return `
-<div class="artist-modal-content">
-  <h2 class="artist-name">${strArtist}</h2>
-  <img class="artist-image" src="${strArtistThumb || ''}" alt="${strArtist}" />
-  <p class="artist-lable"><strong>Label:</strong> ${strLabel}</p>
-  <p class="artist-country"><strong>Country:</strong> ${strCountry}</p>
-  <p class="artist-genres"><strong>Genres:</strong> ${genres}</p>
-  <p class="artist-gender"><strong>Gender:</strong> ${strGender}</p>
-  <p class="artist-member"><strong>Members:</strong> ${intMembers}</p>
-  <p class="artist-formeed"><strong>Formed:</strong> ${intFormedYear}</p>
-  <p class="artist-disbanded">
-    <strong>Disbanded:</strong> ${
-      intDiedYear && intDiedYear !== 'null' ? intDiedYear : 'Still active'
-    }
-  </p>
-  <p class="artist-bio"><strong>Bio:</strong> ${strBiographyEN}</p>
-</div>
-`;
+  const genresMarkup = genresList.length
+    ? genresList
+        .map(genre => `<button class="genre-btn">${genre}</button>`)
+        .join('')
+    : '-';
+
+  const markupModal = `
+    <div>
+    <div class="close-button">
+      <button class="js-modal-close modal-close">
+        <svg width="32" height="32">
+        <use href="../images/sprite.svg#icon-menu-close"></use>
+        </svg>
+    </div>
+      <h2 class="artist-title">${strArtist}</h2>
+    </div>
+    <div class="modal-artist-info">
+      <div class="artist-img-container">
+        <img src="${strArtistThumb || ''}" alt="${strArtist}" />
+      </div>
+      <ul class="artist-meta-list">
+        <li><b>Years active:</b> ${yearsActive}</li>
+        <li><b>Sex:</b> ${strGender}</li>
+        <li><b>Members:</b> ${intMembers != null ? intMembers : '-'}</li>
+        <li><b>Country:</b> ${strCountry}</li>
+      </ul>
+      <div class="artist-genres">
+        <h3>Genres</h3>
+        ${genresMarkup}
+      </div>
+      <div class="artist-biography">
+        <h3>Biography</h3>
+        <p>${strBiographyEN}</p>
+      </div>
+      <div class="artist-albums">
+        <h3>Albums</h3>
+        <div id="albums-container">Loading albums...</div> <!-- місце для альбомів -->
+      </div>
+    </div>`;
+
+  artistInfo.innerHTML = markupModal;
+  refs.modal.classList.remove('hidden');
 }
 
-export function renderAlbums(albumsList) {
-  if (!albumsList || albumsList.length === 0) {
-    return '<p>No albums available.</p>';
+// функція для альбомів
+export function renderAlbums(albumsList = []) {
+  const container = document.querySelector('#albums-container');
+
+  if (!albumsList.length) {
+    container.innerHTML = '<p>-</p>';
+    return;
   }
 
-  return albumsList
+  const albumsMarkup = albumsList
     .map(album => {
-      const tracksMarkup = album.tracks?.length
-        ? album.tracks
-            .map(
-              track => `
-          <li class="track-item">
-            <span class="track-name">${track.strTrack || '-'}</span>
-            <span class="track-duration">${track.intDuration || '-'}</span>
-          </li>`
-            )
-            .join('')
-        : '<li>-</li>';
+      const tracksMarkup =
+        album.tracks && album.tracks.length
+          ? album.tracks
+              .map(
+                track => `
+              <li class="track-item">
+                <span class="track-name">${track.strTrack || '-'}</span>
+                <span class="track-duration">${track.intDuration || '-'}</span>
+                ${
+                  track.movie
+                    ? `<a class="track-link" href="${track.movie}" target="_blank" rel="noopener noreferrer">
+                          <svg width="24" height="24">
+                            <use href="../images/sprite.svg#icon-youtube"></use>
+                          </svg>
+                      </a>`
+                    : `<p class="track-link empty">-</p>`
+                }
+              </li>`
+              )
+              .join('')
+          : '<li>-</li>';
 
       return `
-    <div class="album">
-      <h4>${album.strAlbum || '-'}</h4>
-      <p><strong>Year:</strong> ${album.intYearReleased || '-'}</p>
-      <ul class="track-list">${tracksMarkup}</ul>
-    </div>`;
+        <div class="album">
+          <img src="${album.albumThumb || 'placeholder.jpg'}" alt="${
+        album.strAlbum
+      }" class="album-cover" />
+          <h4>${album.strAlbum || '-'}</h4>
+          <p><b>Year Released:</b> ${album.intYearReleased || '-'}</p>
+          <ul class="track-list">${tracksMarkup}</ul>
+        </div>`;
     })
     .join('');
+
+  artistAlboms.innerHTML = albumsMarkup;
 }
 
+//
+export function showLoadMoreBtn() {
+  refs.loadMoreBtn.classList.remove('visually-hidden');
+}
+
+export function hideLoadMoreBtn() {
+  refs.loadMoreBtn.classList.add('visually-hidden');
+}
+
+export function showLoader() {
+  refs.loader.classList.remove('visually-hidden');
+}
+
+export function hideLoader() {
+  refs.loader.classList.add('visually-hidden');
+}

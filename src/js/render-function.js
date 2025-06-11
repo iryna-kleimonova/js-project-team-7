@@ -60,7 +60,7 @@ export function renderModal(artistData) {
     : '-';
 
   const genresMarkup = genresList.length
-    ? genresList.map(genre => `<p class="genre-item">${genre}</з>`).join('')
+    ? genresList.map(genre => `<p class="genre-item">${genre}</p>`).join('')
     : '-';
 
   const markupModal = `
@@ -70,10 +70,22 @@ export function renderModal(artistData) {
         <img src="${strArtistThumb || ''}" alt="${strArtist}" />
       </div>
       <ul class="artist-meta-list">
-        <li><b>Years active:</b> ${yearsActive}</li>
-        <li><b>Sex:</b> ${strGender}</li>
-        <li><b>Members:</b> ${intMembers != null ? intMembers : '-'}</li>
-        <li><b>Country:</b> ${strCountry}</li>
+        <div class="artist-img-container-first">
+          <li><b>Years active</b><br>
+            <p>${yearsActive}</p>
+          </li>
+          <li><b>Sex</b><br>
+            <p>${strGender}</p>
+          </li>
+        </div>
+        <div class="artist-img-container-second">
+          <li><b>Members</b><br>
+            <p>${intMembers != null ? intMembers : '-'}</p>
+          </li>
+          <li><b>Country</b><br>
+            <p>${strCountry}</p>
+          </li>
+        </div>
       </ul>
       
       <div class="artist-biography">

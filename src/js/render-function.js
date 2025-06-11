@@ -66,7 +66,7 @@ export function renderModal(artistData) {
   const markupModal = `
     <h2 class="artist-title">${strArtist}</h2>
     <div class="modal-artist-info">
-      <div class="artist-img-container">
+    <div class="artist-img-container">
         <img src="${strArtistThumb || ''}" alt="${strArtist}" />
       </div>
       <ul class="artist-meta-list"> 
@@ -79,11 +79,11 @@ export function renderModal(artistData) {
           <li class="artist-meta-list-item"><b>Members</b><br>
             <p>${intMembers != null ? intMembers : '-'}</p>
           </li>
-          <li class="artist-meta-list-item"<b>Country</b><br>
+          <li class="artist-meta-list-item"><b>Country</b><br>
             <p>${strCountry}</p>
           </li>
       </ul>
-      
+    <div class="artist-bottom">
       <div class="artist-biography">
         <h3 class="artist-biography-title">Biography</h3>
         <p class="artist-biography-desc">${strBiographyEN}</p>
@@ -91,6 +91,7 @@ export function renderModal(artistData) {
       <div class="artist-genres">
         ${genresMarkup}
       </div>
+    </div>
     </div>
   `;
   artistInfo.innerHTML = markupModal;
@@ -107,6 +108,7 @@ export function renderAlbums(albumsList = []) {
 
   const albumsMarkup = `
     <h2 class="albums-title">Albums</h2>
+      <div class="albums-list">
   ${albumsList
     .map(album => {
       const tracksMarkup =
@@ -148,6 +150,7 @@ export function renderAlbums(albumsList = []) {
           </div>`;
     })
     .join('')}
+    </div>
   `;
 
   artistAlbums.innerHTML = albumsMarkup;

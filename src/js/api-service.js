@@ -33,7 +33,6 @@ export async function fetchArtistById(id) {
 export async function fetchArtistsAlbumsById(id) {
   try {
     const res = await axios.get(`/artists/${id}/albums`);
-
     return res.data.albumsList;
 
   } catch (error) {

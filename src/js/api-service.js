@@ -32,6 +32,14 @@ export async function fetchArtistById(id) {
 
 export async function fetchArtistsAlbumsById(id) {
 
+  try {
+    const res = await axios.get(`/artists/${id}/albums`);
+    return res.data.albumsList; 
+  } catch (error) {
+    console.error('Error in fetchArtistsAlbumsById:', error);
+    throw error;
+  }
+}
     try {
       const res = await axios.get(`/artists/${id}/albums`);
       return res.data;
@@ -39,7 +47,7 @@ export async function fetchArtistsAlbumsById(id) {
       console.error('Error in fetchArtistsAlbumsById:', error);
       throw error;
     }
-}
+
   
 
 // search filter
@@ -58,3 +66,4 @@ export async function fetchArtistsByGenre(genre) {
   } catch (error) {
   }
 }
+

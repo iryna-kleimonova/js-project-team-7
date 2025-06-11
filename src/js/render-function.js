@@ -64,13 +64,6 @@ export function renderModal(artistData) {
     : '-';
 
   const markupModal = `
-    <div class="close-button">
-      <button class="js-modal-close modal-close">
-        <svg width="32" height="32">
-          <use href="../images/sprite.svg#icon-menu-close"></use>
-        </svg>
-      </button>
-    </div>
     <h2 class="artist-title">${strArtist}</h2>
     <div class="modal-artist-info">
       <div class="artist-img-container">
@@ -82,13 +75,14 @@ export function renderModal(artistData) {
         <li><b>Members:</b> ${intMembers != null ? intMembers : '-'}</li>
         <li><b>Country:</b> ${strCountry}</li>
       </ul>
+      
+      <div class="artist-biography">
+        <h3 class="artist-biography-title">Biography</h3>
+        <p class="artist-biography-desc">${strBiographyEN}</p>
+      </div>
       <div class="artist-genres">
         <h3>Genres</h3>
         ${genresMarkup}
-      </div>
-      <div class="artist-biography">
-        <h3>Biography</h3>
-        <p>${strBiographyEN}</p>
       </div>
     </div>
   `;
@@ -96,7 +90,7 @@ export function renderModal(artistData) {
   artistInfo.innerHTML = markupModal;
 }
 
-refs.modal.classList.remove('hidden');
+// refs.modal.classList.remove('hidden');
 
 // функція для альбомів
 export function renderAlbums(albumsList = []) {
@@ -123,7 +117,7 @@ export function renderAlbums(albumsList = []) {
                     track.movie
                       ? `<a class="track-link" href="${track.movie}" target="_blank" rel="noopener noreferrer">
                           <svg width="24" height="24">
-                            <use href="../images/sprite.svg#icon-youtube"></use>
+                            <use href="${spriteUrl}#icon-youtube"></use>
                           </svg>
                         </a>`
                       : `<p class="track-link empty">-</p>`
@@ -135,9 +129,7 @@ export function renderAlbums(albumsList = []) {
 
       return `
         <div class="album">
-          <img src="${album.albumThumb || 'placeholder.jpg'}" alt="${
-        album.strAlbum
-      }" class="album-cover" />
+          
           <h4>${album.strAlbum || '-'}</h4>
           <p><b>Year Released:</b> ${album.intYearReleased || '-'}</p>
           <ul class="track-list">${tracksMarkup}</ul>

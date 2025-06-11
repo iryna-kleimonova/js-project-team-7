@@ -1,32 +1,21 @@
+import { event } from 'jquery';
+import { refs } from './refs';
+import { renderModal, renderAlbums } from './render-function';
 
-    import { event } from 'jquery';
-    import { refs } from './refs';
-    import {renderModal} from './render-function';
+const { modal, modalCloseBtn, modalContent } = refs;
 
-    const { modal, modalCloseBtn, modalContent } = refs;
-
-
-
-    // export function openArtistModal({ artist, albums }) {
-    //   console.log('Дані для модального вікна:', artist, albums);
-    //   modal.classList.remove("hidden");
-    // }
-    export function openArtistModal({ artist, albums }) {
+export function openArtistModal({ artist, albums }) {
+  console.log(albums);
   const artistData = { ...artist, albumsList: albums || [] };
-  console.log(artistData);
+  console.log('Albums:', artistData.albumsList);
+
   renderModal(artistData);
+  renderAlbums(artistData.albumsList);
   refs.modal.classList.remove('hidden');
-    }
+}
 
-
-
-
-
-
-
-
-    document.addEventListener('click', (event) => {
-      if (event.target.closest('.js-modal-close')) {
-        refs.modal.classList.add('hidden');
-      }
-    });
+document.addEventListener('click', event => {
+  if (event.target.closest('.js-modal-close')) {
+    refs.modal.classList.add('hidden');
+  }
+});

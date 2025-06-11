@@ -2,6 +2,55 @@
   display: none !important;
 }
 
+.modal {
+  position: fixed;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px;
+  overflow: hidden; /* блокувати прокрутку на бекдропі */
+  z-index: 1000;
+}
 
+.modal-body {
+  background: #060307;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 1312px;
+  max-height: calc(
+    100vh - 128px
+  ); /* щоб вміст не виходив за екран, враховуючи паддінг modal */
+  padding: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  overflow-y: auto; /* вертикальна прокрутка для контенту */
+  box-sizing: border-box;
+}
 
-
+/* #region artists */
+.artist-modal-content {
+}
+.artist-image {
+}
+.artist-name {
+}
+.artist-lable {
+}
+.artist-country {
+}
+.artist-genres {
+}
+.artist-gender {
+}
+.artist-member {
+}
+.artist-formeed {
+}
+.artist-disbanded {
+}
+.artist-bio {
+}
+/* #endregion artists */

@@ -6,40 +6,41 @@ export function renderArtists(data) {
     .map(artist => {
       const { _id, strArtist, strBiographyEN, strArtistThumb, genres } = artist;
       return `
-              <li class="artist-card" data-id="${_id}">
-              
-                <img class="artist-card-img" src="${strArtistThumb}" alt="${strArtist}" />
-            
-                <ul class="artist-card-genres">
-                  ${genres.map(genre => `<li>${genre}</li>`).join('')}
-                </ul>
+        <li class="artist-card" data-id="${_id}">
+          <img class="artist-card-img" src="${strArtistThumb}" alt="${strArtist}" />
 
-                <h3 class="artist-card-name">${strArtist}</h3>
-            
-                <p class="artist-card-info">
-                  ${
-                    strBiographyEN
-                      ? strBiographyEN.slice(0, 100) + '...'
-                      : 'No description available'
-                  }
-                </p>
-            
-                <button class="artist-card-btn" type="button">
-                 Learn More
-                 <svg class="artist-card-icon" width="24" height="24">
-                 <use href="${spriteUrl}#icon-caret-right"></use>
-                 </svg>
-                </button>
-              </li>
-            `;
+          <ul class="artist-card-genres">
+            ${genres.map(genre => `<li>${genre}</li>`).join('')}
+          </ul>
+
+          <h3 class="artist-card-name">${strArtist}</h3>
+
+          <p class="artist-card-info">
+            ${
+              strBiographyEN
+                ? strBiographyEN.slice(0, 100) + '...'
+                : 'No description available'
+            }
+          </p>
+
+          <button class="artist-card-btn" type="button">
+            Learn More
+            <svg class="artist-card-icon" width="24" height="24">
+              <use href="${spriteUrl}#icon-caret-right"></use>
+            </svg>
+          </button>
+        </li>`;
     })
     .join('');
 
   refs.artistCardsContainer.insertAdjacentHTML('beforeend', markup);
 }
-export function renderModal(artistData) {
-  console.log(artistData);
 
+// Функції для модального вікна
+const artistInfo = document.querySelector('.artists-info');
+const artistAlboms = document.querySelector('.artists-alboms');
+
+export function renderModal(artistData) {
   const {
     strArtist = '-',
     strArtistThumb,
@@ -50,7 +51,6 @@ export function renderModal(artistData) {
     strCountry = '-',
     strBiographyEN = '-',
     genresList = [],
-    albumsList = [],
   } = artistData;
 
   const yearsActive = intFormedYear
@@ -65,43 +65,14 @@ export function renderModal(artistData) {
         .join('')
     : '-';
 
-  const albumsMarkup = albumsList.length
-    ? albumsList
-        .map(album => {
-          const tracksMarkup =
-            album.tracks && album.tracks.length
-              ? album.tracks
-                  .map(
-                    track =>
-                      console.log(track)`
-                    <li class="track-item">
-                      <span class="track-name">${track.trackTitle || '-'}</span>
-                      <span class="track-duration">${
-                        track.trackDuration || '-'
-                      }</span>
-                      ${
-                        track.youtubeLink
-                          ? `<a class="track-link" href="${track.youtubeLink}" target="_blank" rel="noopener noreferrer">🔗</a>`
-                          : `<span class="track-link empty">-</span>`
-                      }
-                      
-                    </li>`
-                  )
-                  .join('')
-              : '<li>-</li>';
-
-          return `
-            <div class="album">
-              <h4>${album.albumTitle || '-'}</h4>
-              <ul class="track-list">${tracksMarkup}</ul>
-            </div>`;
-        })
-        .join('')
-    : '-';
-  // console.log(album.tracks)
-
   const markupModal = `
     <div>
+    <div class="close-button">
+      <button class="js-modal-close modal-close">
+        <svg width="32" height="32">
+        <use href="../images/sprite.svg#icon-menu-close"></use>
+        </svg>
+    </div>
       <h2 class="artist-title">${strArtist}</h2>
     </div>
     <div class="modal-artist-info">
@@ -124,12 +95,60 @@ export function renderModal(artistData) {
       </div>
       <div class="artist-albums">
         <h3>Albums</h3>
-        ${albumsMarkup}
+        <div id="albums-container">Loading albums...</div> <!-- місце для альбомів -->
       </div>
     </div>`;
 
-  refs.modal.innerHTML = markupModal;
+  artistInfo.innerHTML = markupModal;
   refs.modal.classList.remove('hidden');
+}
+
+// функція для альбомів
+export function renderAlbums(albumsList = []) {
+  const container = document.querySelector('#albums-container');
+
+  if (!albumsList.length) {
+    container.innerHTML = '<p>-</p>';
+    return;
+  }
+
+  const albumsMarkup = albumsList
+    .map(album => {
+      const tracksMarkup =
+        album.tracks && album.tracks.length
+          ? album.tracks
+              .map(
+                track => `
+              <li class="track-item">
+                <span class="track-name">${track.strTrack || '-'}</span>
+                <span class="track-duration">${track.intDuration || '-'}</span>
+                ${
+                  track.movie
+                    ? `<a class="track-link" href="${track.movie}" target="_blank" rel="noopener noreferrer">
+                          <svg width="24" height="24">
+                            <use href="../images/sprite.svg#icon-youtube"></use>
+                          </svg>
+                      </a>`
+                    : `<p class="track-link empty">-</p>`
+                }
+              </li>`
+              )
+              .join('')
+          : '<li>-</li>';
+
+      return `
+        <div class="album">
+          <img src="${album.albumThumb || 'placeholder.jpg'}" alt="${
+        album.strAlbum
+      }" class="album-cover" />
+          <h4>${album.strAlbum || '-'}</h4>
+          <p><b>Year Released:</b> ${album.intYearReleased || '-'}</p>
+          <ul class="track-list">${tracksMarkup}</ul>
+        </div>`;
+    })
+    .join('');
+
+  artistAlboms.innerHTML = albumsMarkup;
 }
 
 export function showLoadMoreBtn() {

@@ -33,21 +33,27 @@ export async function fetchArtistById(id) {
 export async function fetchArtistsAlbumsById(id) {
   try {
     const res = await axios.get(`/artists/${id}/albums`);
-    return res.data;
+    return res.data.albumsList;
+
   } catch (error) {
     console.error('Error in fetchArtistsAlbumsById:', error);
     throw error;
   }
 }
 
-// Функція для запиту для модального вікна
+// search filter
+export async function fetchGenres() {
+  try {
+    const response = await axios.get('/genres');
+    return response.data;
+  } catch (error) {
+    ``;
+  }
+}
 
-// export async function fetchModalById(id) {
-//   try {
-//     const response = await axios.get(`/artists/${id}/albums`);
-//     return response.data;
-//   } catch (error) {
-//     console.error(error);
-//     return null;
-//   }
-// }
+export async function fetchArtistsByGenre(genre) {
+  try {
+    const response = await axios.get(`/artists?genre=${genre}`);
+    return response.data;
+  } catch (error) {}
+}

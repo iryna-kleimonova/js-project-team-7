@@ -35,7 +35,8 @@ export function renderArtists(data) {
 
   refs.artistCardsContainer.insertAdjacentHTML('beforeend', markup);
 }
-// функції для модального вікна
+
+// Функції для модального вікна
 const artistInfo = document.querySelector('.artists-info');
 const artistAlboms = document.querySelector('.artists-alboms');
 
@@ -150,7 +151,6 @@ export function renderAlbums(albumsList = []) {
   artistAlboms.innerHTML = albumsMarkup;
 }
 
-//
 export function showLoadMoreBtn() {
   refs.loadMoreBtn.classList.remove('visually-hidden');
 }

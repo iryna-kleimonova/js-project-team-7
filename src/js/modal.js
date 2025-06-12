@@ -7,48 +7,46 @@ export function openArtistModal({ artist, albums }) {
     albumsList: albums || [],
     genresList: artist.genres || [],
   };
+
   renderModal(artistData);
   renderAlbums(artistData.albumsList);
-  refs.modal.classList.remove('hidden');
-  document.body.classList.add('modal-open');
-  hideModalLoader();
+
+  addModalListeners();
 }
 
 // додавання та видалення слухачів для модального вікна
-document.addEventListener('click', event => {
-  if (event.target.closest('.js-modal-close')) {
-    refs.modal.classList.add('hidden');
-    document.body.classList.remove('modal-open');
-    removeListeners();
-  }
-});
+function closeModal() {
+  refs.modal.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+  removeModalListeners();
+}
 
-document.addEventListener('keydown', event => {
+function onModalClick(event) {
+  if (event.target === refs.modal || event.target.closest('.js-modal-close')) {
+    closeModal();
+  }
+}
+
+function onModalKeydown(event) {
   if (event.key === 'Escape') {
-    refs.modal.classList.add('hidden');
-    document.body.classList.remove('modal-open');
-    removeListeners();
+    closeModal();
   }
-});
+}
 
-refs.modal.addEventListener('click', event => {
-  if (event.target === refs.modal) {
-    refs.modal.classList.add('hidden');
-    document.body.classList.remove('modal-open');
-    removeListeners();
-  }
-});
+function addModalListeners() {
+  document.addEventListener('click', onModalClick);
+  document.addEventListener('keydown', onModalKeydown);
+}
 
-function removeListeners() {
-  document.removeEventListener('click', this);
-  document.removeEventListener('keydown', this);
-  refs.modal.removeEventListener('click', this);
+function removeModalListeners() {
+  document.removeEventListener('click', onModalClick);
+  document.removeEventListener('keydown', onModalKeydown);
 }
 
 export function showModalLoader() {
-  refs.modalLoader.classList.add('active');
+  refs.modalLoader?.classList.remove('visually-hidden');
 }
 
 export function hideModalLoader() {
-  refs.modalLoader.classList.remove('active');
+  refs.modalLoader?.classList.add('visually-hidden');
 }

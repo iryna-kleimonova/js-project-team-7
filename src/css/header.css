@@ -89,22 +89,20 @@
   color: #fff;
   background-color: transparent;
   line-height: 1.5;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: color 0.2s ease;
   cursor: pointer;
 }
 
 .nav-button:hover,
 .nav-button:focus {
-  background-color: #8952a7;
-  color: #e0e0e0; 
+  color: #8952a7;
 }
 .nav-button.active {
-  background-color: #8952a7;
-  color: #e0e0e0;
+  color: #8952a7;
+
 }
 .nav-button.active:not(:hover) {
-  background-color: #8952a7;
-  color: #e0e0e0;
+  color: #8952a7;
 }
 
 @media screen and (min-width: 768px) {

@@ -184,6 +184,16 @@ export function hideLoader() {
   refs.loader.classList.add('visually-hidden');
 }
 
+export function showLoadMoreLoader() {
+  refs.loader.classList.remove('visually-hidden');
+  refs.loadMoreBtn.classList.add('visually-hidden');
+}
+
+export function hideLoadMoreLoader() {
+  refs.loader.classList.add('visually-hidden');
+  refs.loadMoreBtn.classList.remove('visually-hidden');
+}
+
 // рендеринг зірочок рейтингу
 export function renderStars(containerSelector, rating) {
   const container =

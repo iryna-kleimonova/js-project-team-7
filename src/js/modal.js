@@ -14,7 +14,7 @@ export function openArtistModal({ artist, albums }) {
   refs.modal.classList.remove('hidden');
   document.body.classList.add('modal-open');
 }
-// ---- додавання та видалення слухачів для модального вікна ------------
+// додавання та видалення слухачів для модального вікна ------------
 
 
 document.addEventListener('click', (event) => {

@@ -10,37 +10,35 @@ const swiper = new Swiper('.swiper', {
   modules: [Navigation, Pagination],
   slidesPerView: 1,
   spaceBetween: 0,
-  cssMode: true,
+  cssMode: false,
+  touchEventsTarget: 'container',
   centeredSlides: true,
-  
-  
+
   pagination: {
     el: '.swiper-pagination',
     type: 'custom',
 
-    renderCustom: function (swiper, current, total) {
+    renderCustom(swiper, current, total) {
       return `
         <span class="swiper-pagination-bullet" data-index="0"></span>
         <span class="swiper-pagination-bullet" data-index="middle"></span>
         <span class="swiper-pagination-bullet" data-index="${total - 1}"></span>
       `;
     },
-    
-    clickable: true
+
+    clickable: true,
   },
   on: {
-
     init(swiper) {
       setTimeout(() => {
         updateActiveCustomBullet(swiper);
-      attachCustomPaginationHandlers(swiper);
+        attachCustomPaginationHandlers(swiper);
       }, 300);
-      
     },
     slideChange(swiper) {
       updateActiveCustomBullet(swiper);
-   },
-},
+    },
+  },
 
   navigation: {
     nextEl: '.feedback-next',
@@ -49,7 +47,6 @@ const swiper = new Swiper('.swiper', {
   simulateTouch: true,
   touchRatio: 1,
 
-
   breakpoints: {
     320: { slidesPerView: 1 },
     768: { slidesPerView: 1 },
@@ -57,10 +54,9 @@ const swiper = new Swiper('.swiper', {
   },
 });
 
-
 function attachCustomPaginationHandlers(swiper) {
   const container = swiper.pagination.el;
-  container.addEventListener('click', (e) => {
+  container.addEventListener('click', e => {
     const bullet = e.target.closest('.swiper-pagination-bullet');
     if (!bullet) return;
 
@@ -79,9 +75,8 @@ function attachCustomPaginationHandlers(swiper) {
 function updateActiveCustomBullet(swiper) {
   const container = swiper.pagination.el;
   const bullets = container.querySelectorAll('.swiper-pagination-bullet');
-  
+
   bullets.forEach(b => b.classList.remove('swiper-pagination-bullet-active'));
-  
 
   const index = swiper.realIndex;
   if (index === 0) {
@@ -92,8 +87,6 @@ function updateActiveCustomBullet(swiper) {
     bullets[1].classList.add('swiper-pagination-bullet-active');
   }
 }
-
-
 
 axios.defaults.baseURL = 'https://sound-wave.b.goit.study/api/';
 

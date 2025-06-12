@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 .reviews-container {
   max-width: 320px;
   padding: 64px 16px;

@@ -11,6 +11,9 @@ export function openArtistModal({ artist, albums }) {
   renderModal(artistData);
   renderAlbums(artistData.albumsList);
 
+  refs.modal.classList.remove('hidden');
+  document.body.classList.add('modal-open');
+
   addModalListeners();
 }
 

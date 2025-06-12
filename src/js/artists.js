@@ -4,24 +4,35 @@ import {
   fetchArtistsAlbumsById,
 } from './api-service.js';
 import { openArtistModal } from './modal.js';
-import { renderArtists } from './render-function.js';
+import {
+  renderArtists,
+  showLoadMoreBtn,
+  hideLoadMoreBtn,
+  showLoadMoreLoader,
+  hideLoadMoreLoader,
+} from './render-function.js';
 import { refs } from './refs.js';
+import { showModalLoader, hideModalLoader } from './modal.js';
 
 let currentPage = 1;
 const limit = 8;
 let totalPages = null;
 
 async function loadArtists() {
+  showLoadMoreLoader();
+
   try {
     const data = await fetchArtists(currentPage, limit);
     renderArtists(data);
     totalPages = Math.ceil(data.total / limit);
-
-    if (currentPage >= totalPages) {
-      refs.loadMoreBtn.style.display = 'none';
-    }
   } catch (error) {
     console.error('Failed to load artists:', error);
+  } finally {
+    hideLoadMoreLoader();
+
+    if (currentPage < totalPages) {
+      hideLoadMoreBtn();
+    }
   }
 }
 
@@ -34,23 +45,37 @@ refs.loadMoreBtn.addEventListener('click', () => {
 
 refs.artistCardsContainer.addEventListener('click', async e => {
   const button = e.target.closest('.artist-card-btn');
+
   if (!button) return;
 
   const card = button.closest('.artist-card');
-  const artistId = card?.dataset?.id;
+  const raw = card.dataset.artist;
 
-  if (!artistId) {
-    console.warn('ID not found for artist card');
+  if (!raw) {
+    console.warn('Missing artist data');
     return;
   }
 
-  try {
-    const artistData = await fetchArtistById(artistId);
-    const albumsData = await fetchArtistsAlbumsById(artistId);
+  showModalLoader();
+  refs.modal.classList.remove('hidden');
 
-    openArtistModal({ artist: artistData, albums: albumsData });
+  try {
+    const artistFromCard = JSON.parse(decodeURIComponent(raw));
+    const artistFromApi = await fetchArtistById(artistFromCard._id);
+    const albums = await fetchArtistsAlbumsById(artistFromCard._id);
+
+    const mergedArtist = {
+      ...artistFromApi,
+      genres: artistFromCard.genres || [],
+    };
+
+    openArtistModal({ artist: mergedArtist, albums });
   } catch (error) {
     console.error('Failed to open artist modal:', error);
+  } finally {
+    setTimeout(() => {
+      hideModalLoader();
+    }, 20);
   }
 });
 

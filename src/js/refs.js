@@ -1,4 +1,3 @@
-//Обʼєкти з посиланнями на ДОМ елементи
 export const refs = {
   // Header & Navigation
   burger: document.querySelector('.js-burger'),
@@ -17,6 +16,13 @@ export const refs = {
   loadMoreBtn: document.querySelector('.load-more-btn'),
   loader: document.getElementById('loader'),
 
+  // Search filter
+  toggleFiltersBtn: document.getElementById('toggle-filters'),
+  filtersContainer: document.getElementById('filters-container'),
+  genreButton: document.getElementById('genre-button'),
+  genreMenu: document.getElementById('genre-menu'),
+  sortingDropdown: document.querySelector('#sorting-dropdown'),
+  sortingMenu: document.querySelector('#sorting-menu'),
 
   // About Artist Modal
   modal: document.querySelector('.js-modal'),
@@ -24,6 +30,7 @@ export const refs = {
   modalContent: document.querySelector('.js-modal-content'),
   modalFilters: document.querySelector('.js-modal-filters'),
   modalBody: document.querySelector('.js-modal-body'),
+  modalLoader: document.getElementById('modal-loader'),
 
   // About section
   aboutSection: document.querySelector('.js-about'),
@@ -35,6 +42,7 @@ export const refs = {
   testimonialsSlider: document.querySelector('.js-testimonials-slider'),
   testimonialPrevBtn: document.querySelector('.js-testimonials-btn-prev'),
   testimonialNextBtn: document.querySelector('.js-testimonials-btn-next'),
+
   // Footer
   footer: document.querySelector('.js-footer'),
 };

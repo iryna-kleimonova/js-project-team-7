@@ -6,7 +6,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { renderStars } from './render-function';
 
-
 const swiper = new Swiper('.swiper', {
   modules: [Navigation, Pagination],
   slidesPerView: 1,

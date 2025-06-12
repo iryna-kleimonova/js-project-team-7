@@ -1,19 +1,32 @@
+.reviews {
+  padding: 64px 0px;
+}
+
+@media screen and (min-width: 768px) {
+  .reviews {
+    padding: 64px 0px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .reviews {
+    padding: 112px 0px;
+  }
+}
+
 .reviews-container {
   max-width: 320px;
-  padding: 64px 16px;
 }
 
 @media screen and (min-width: 768px) {
   .reviews-container {
     max-width: 768px;
-    padding: 64px 32px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .reviews-container {
     max-width: 1440px;
-    padding: 112px 64px;
   }
 }
 

@@ -1,7 +1,11 @@
 import { refs } from './refs';
 import { renderModal, renderAlbums } from './render-function';
 
+let scrollPosition = 0;
+
 export function openArtistModal({ artist, albums }) {
+  scrollPosition = window.scrollY || document.documentElement.scrollTop;
+
   const artistData = {
     ...artist,
     albumsList: albums || [],
@@ -11,8 +15,15 @@ export function openArtistModal({ artist, albums }) {
   renderModal(artistData);
   renderAlbums(artistData.albumsList);
 
+  document.body.style.cssText = `
+    position: fixed;
+    top: -${scrollPosition}px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+  `;
+
   refs.modal.classList.remove('hidden');
-  document.body.classList.add('modal-open');
 
   addModalListeners();
 }
@@ -20,7 +31,13 @@ export function openArtistModal({ artist, albums }) {
 // додавання та видалення слухачів для модального вікна
 function closeModal() {
   refs.modal.classList.add('hidden');
-  document.body.classList.remove('modal-open');
+
+  const scrollY = -parseInt(document.body.style.top);
+
+  document.body.style.cssText = '';
+
+  window.scrollTo({ top: scrollY });
+
   removeModalListeners();
 }
 

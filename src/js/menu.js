@@ -1,7 +1,7 @@
 import { refs } from './refs.js';
 
-window.history.scrollRestoration = 'manual'; // Блокує автоскрол після оновлення
 
+window.history.scrollRestoration = 'manual';
 
 
 const scrollToSection = (id) => {
@@ -12,14 +12,21 @@ const scrollToSection = (id) => {
   window.scrollTo({ top: offset, behavior: 'smooth' });
 };
 
+
 const closeMobileMenu = () => {
   refs.navList.classList.remove('is-open');
   document.body.classList.remove('body-lock');
 };
 
+
 const openMobileMenu = () => {
   refs.navList.classList.add('is-open');
   document.body.classList.add('body-lock');
+
+  refs.navLinks.forEach(link => {
+    link.classList.remove('active');
+    link.blur();
+  });
 };
 
 const activateNavLink = (activeLink) => {
@@ -28,8 +35,9 @@ const activateNavLink = (activeLink) => {
   activeLink.blur();
 };
 
+
 const handleScrollHighlight = () => {
-  const scrollPos = window.scrollY + refs.header.offsetHeight + 5; // Зменшено на 5 (раніше було +10)
+  const scrollPos = window.scrollY + refs.header.offsetHeight + 5;
 
   refs.navLinks.forEach(link => {
     const href = link.getAttribute('href');
@@ -41,7 +49,6 @@ const handleScrollHighlight = () => {
     const sectionTop = section.offsetTop;
     const sectionBottom = sectionTop + section.offsetHeight;
 
-
     if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
       link.classList.add('active');
       link.blur();
@@ -52,18 +59,17 @@ const handleScrollHighlight = () => {
 };
 
 
-
 refs.burger.addEventListener('click', openMobileMenu);
-
 refs.closeBtn.addEventListener('click', closeMobileMenu);
+
 
 document.querySelectorAll('.header-logo').forEach(logo => {
   logo.addEventListener('click', (e) => {
     e.preventDefault();
-
     location.reload();
   });
 });
+
 
 refs.navLinks.forEach(link => {
   const href = link.getAttribute('href');
@@ -79,7 +85,9 @@ refs.navLinks.forEach(link => {
   });
 });
 
+
 window.addEventListener('scroll', handleScrollHighlight);
+
 
 window.addEventListener('load', () => {
   if (window.location.hash) {

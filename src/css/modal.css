@@ -3,17 +3,17 @@
 }
 
 .modal-loader {
-  display: none;
-}
-
-.modal-loader.active {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(6, 3, 7, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9000;
   pointer-events: none;
-  display: block;
 }
 
 .spinner {
@@ -30,6 +30,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.visually-hidden {
+  display: none;
 }
 
 body.modal-open {
@@ -59,6 +63,23 @@ body.modal-open {
   overflow-y: auto;
   padding: 52px 8px;
   position: relative;
+
+  scrollbar-width: thin;
+  scrollbar-color: #764191 #1e1c1f;
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background-color: #1e1c1f;
+  border-radius: 5px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: #764191;
+  border-radius: 8px;
 }
 
 .modal-body {
@@ -154,15 +175,21 @@ body.modal-open {
   overflow-y: auto;
   padding-right: 8px;
   scrollbar-width: thin;
+  scrollbar-color: #764191 #1e1c1f;
 }
 
 .artist-biography-desc::-webkit-scrollbar {
   width: 6px;
 }
 
+.artist-biography-desc::-webkit-scrollbar-track {
+  background-color: #1e1c1f;
+  border-radius: 5px;
+}
+
 .artist-biography-desc::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 6px;
+  background-color: #764191;
+  border-radius: 8px;
 }
 
 /* Жанри */
@@ -386,7 +413,8 @@ body.modal-open {
   }
 
   .albums-list {
-    grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
+    /* grid-template-columns: repeat(auto-fit, minmax(272px, 1fr)); */
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .album {

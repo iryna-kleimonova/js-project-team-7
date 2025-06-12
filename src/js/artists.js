@@ -8,21 +8,18 @@ import {
   renderArtists,
   showLoadMoreBtn,
   hideLoadMoreBtn,
-  showLoader,
-  hideLoader,
+  showLoadMoreLoader,
+  hideLoadMoreLoader,
 } from './render-function.js';
 import { refs } from './refs.js';
 import { showModalLoader, hideModalLoader } from './modal.js';
-
-const loader = document.getElementById('loader');
 
 let currentPage = 1;
 const limit = 8;
 let totalPages = null;
 
 async function loadArtists() {
-  showLoader();
-  hideLoadMoreBtn();
+  showLoadMoreLoader();
 
   try {
     const data = await fetchArtists(currentPage, limit);
@@ -31,10 +28,10 @@ async function loadArtists() {
   } catch (error) {
     console.error('Failed to load artists:', error);
   } finally {
-    hideLoader();
+    hideLoadMoreLoader();
 
     if (currentPage < totalPages) {
-      showLoadMoreBtn();
+      hideLoadMoreBtn();
     }
   }
 }
@@ -59,10 +56,11 @@ refs.artistCardsContainer.addEventListener('click', async e => {
     return;
   }
 
-  try {
-    showModalLoader();
-    const artistFromCard = JSON.parse(decodeURIComponent(raw));
+  showModalLoader();
+  refs.modal.classList.remove('hidden');
 
+  try {
+    const artistFromCard = JSON.parse(decodeURIComponent(raw));
     const artistFromApi = await fetchArtistById(artistFromCard._id);
     const albums = await fetchArtistsAlbumsById(artistFromCard._id);
 
@@ -75,7 +73,9 @@ refs.artistCardsContainer.addEventListener('click', async e => {
   } catch (error) {
     console.error('Failed to open artist modal:', error);
   } finally {
-    hideModalLoader();
+    setTimeout(() => {
+      hideModalLoader();
+    }, 20);
   }
 });
 

@@ -59,10 +59,11 @@ refs.artistCardsContainer.addEventListener('click', async e => {
     return;
   }
 
-  try {
-    showModalLoader();
-    const artistFromCard = JSON.parse(decodeURIComponent(raw));
+  showModalLoader();
+  refs.modal.classList.remove('hidden');
 
+  try {
+    const artistFromCard = JSON.parse(decodeURIComponent(raw));
     const artistFromApi = await fetchArtistById(artistFromCard._id);
     const albums = await fetchArtistsAlbumsById(artistFromCard._id);
 
@@ -75,7 +76,9 @@ refs.artistCardsContainer.addEventListener('click', async e => {
   } catch (error) {
     console.error('Failed to open artist modal:', error);
   } finally {
-    hideModalLoader();
+    setTimeout(() => {
+      hideModalLoader();
+    }, 20);
   }
 });
 

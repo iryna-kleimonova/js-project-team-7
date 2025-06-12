@@ -1,21 +1,18 @@
-.hidden {
-  display: none;
-}
-
-.reviews-container {
+.container {
+ main
   max-width: 320px;
   padding: 64px 16px;
 }
 
 @media screen and (min-width: 768px) {
-  .reviews-container {
+  .container {
     max-width: 768px;
     padding: 64px 32px;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .reviews-container {
+  .container {
     max-width: 1440px;
     padding: 112px 64px;
   }
@@ -55,10 +52,11 @@
 }
 
 .feedback-text {
-  font-family: 'Epilogue', sans-serif;
+  font-family: "Epilogue", sans-serif;
   font-weight: 700;
-  font-size: 18px;
-  line-height: 1.4;
+  font-size: 26px;
+
+  line-height: 140%;
   letter-spacing: -0.01em;
   text-align: center;
   margin-bottom: 32px;
@@ -96,13 +94,16 @@
   fill: #fff;
 }
 
-.swiper-pagination {
-  background: none;
-}
-
 .swiper-pagination-bullet {
-  background-color: rgba(255, 255, 255, 0.4) !important;
-  opacity: 1;
+  display: inline-block;
+    width: 8px;
+    height: 8px;
+  background-color: #fff !important;
+ 
+  border-radius: 50%;
+    margin: 0 5px;
+    opacity: 0.2;
+    transition: 0.3s;
 }
 
 .swiper-pagination-bullet-active {
@@ -182,3 +183,9 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.swiper-button-disabled{
+  opacity: 0.3;
+  pointer-events: none;
+}
+

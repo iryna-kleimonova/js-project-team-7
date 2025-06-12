@@ -154,6 +154,16 @@
   fill: #ffffff;
 }
 
+.artist-card-btn:hover,
+.artist-card-btn:focus {
+  color: #8952a7;
+}
+
+.artist-card-btn:hover .artist-card-icon,
+.artist-card-btn:focus .artist-card-icon {
+  fill: #8952a7;
+}
+
 @media screen and (min-width: 768px) {
   .artists-section-subtitle {
     width: 704px;

@@ -103,10 +103,13 @@
   margin: 0 5px;
   opacity: 0.2;
   transition: 0.3s;
+
+  cursor: pointer;
 }
 
 .swiper-pagination-bullet-active {
   background-color: #ffffff !important;
+  opacity: 1 !important;
 }
 
 .feedback-prev,

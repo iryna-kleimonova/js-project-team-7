@@ -10,7 +10,7 @@ export function renderArtists(data) {
         <li class="artist-card" data-id="${_id}" data-artist="${encodeURIComponent(
         JSON.stringify(artist)
       )}">
-          <img class="artist-card-img" src="${strArtistThumb}" alt="${strArtist}" />
+          <img class="artist-card-img" src="${strArtistThumb}" alt="${strArtist}" loading="lazy"/>
 
           <ul class="artist-card-genres">
             ${genres.map(genre => `<li>${genre}</li>`).join('')}
@@ -69,7 +69,7 @@ export function renderModal(artistData) {
     <h2 class="artist-title">${strArtist}</h2>
     <div class="modal-artist-info">
     <div class="artist-img-container">
-        <img src="${strArtistThumb || ''}" alt="${strArtist}" />
+        <img src="${strArtistThumb || ''}" alt="${strArtist}" loading="lazy"/>
       </div>
       <div class="artist-top">
       <ul class="artist-meta-list"> 

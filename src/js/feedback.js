@@ -10,9 +10,10 @@ const swiper = new Swiper('.swiper', {
   modules: [Navigation, Pagination],
   slidesPerView: 1,
   spaceBetween: 0,
-  cssMode: false,
-  touchEventsTarget: 'container',
   centeredSlides: true,
+  touchEventsTarget: 'container',
+  simulateTouch: true,
+  touchRatio: 1,
 
   pagination: {
     el: '.swiper-pagination',
@@ -44,8 +45,8 @@ const swiper = new Swiper('.swiper', {
     nextEl: '.feedback-next',
     prevEl: '.feedback-prev',
   },
-  simulateTouch: true,
-  touchRatio: 1,
+  
+ 
 
   breakpoints: {
     320: { slidesPerView: 1 },

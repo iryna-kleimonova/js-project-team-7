@@ -13,7 +13,12 @@ jobs:
 
       - name: Install and build 🔧
         run: |
-          npm install
+          npm config set registry https://registry.npmjs.org/
+          npm cache clean --force
+          for i in 1 2 3; do
+            echo "Attempt $i to install dependencies..."
+            npm install && break || sleep 10
+          done
           npm run build
 
       - name: Deploy 🚀

@@ -1,4 +1,3 @@
-// Функції, які передаються колбеками в addEventListners
 import { refs } from './refs.js';
 
 const observer = new IntersectionObserver(

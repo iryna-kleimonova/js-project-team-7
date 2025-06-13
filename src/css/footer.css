@@ -18,16 +18,17 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 32px; /* Це буде працювати як "геп" між .footer__top > * */
 }
 
 .footer__nav {
-  margin-top: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 32px;
   list-style: none;
   justify-content: center;
+  /* Видаляємо margin-top */
 }
 
 .footer__link {
@@ -38,7 +39,15 @@ html {
   transition: color 0.3s;
 }
 
+.footer__link:hover,
+.footer__link:focus {
+  color: #8952a7;
+}
+
 .footer__bottom {
+  border-top: 1px solid#333;
+  margin-top: 48px;
+  padding-top: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,23 +74,18 @@ html {
   fill: #764191;
 }
 
-.footer__divider {
-  height: 1px;
-  background-color: #333;
-  margin-top: 48px;
-  margin-bottom: 24px;
-  width: 100%;
-}
-
 .footer__icon svg {
   fill: #ffffff;
   transition: fill 0.3s;
   width: 40px;
   height: 40px;
+
+  transition: transform 0.2s ease;
 }
 
 .footer__icon:hover svg {
   fill: #a855f7;
+  transform: scale(1.1);
 }
 
 @media only screen and (min-width: 768px) {
@@ -89,11 +93,10 @@ html {
     padding: 80px 0 80px;
   }
   .footer__top > *:not(:last-child) {
-    margin-top: 32px;
+    /* margin-top: 32px; */
   }
 
   .footer__nav {
-    margin-top: 0;
     flex-direction: row;
     gap: 32px;
   }
@@ -102,13 +105,11 @@ html {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 0;
+    margin-top: 80px;
+    border-top: 1px solid #333;
+    padding-top: 32px;
   }
 
-  .footer__divider {
-    margin-top: 80px;
-    margin-bottom: 32px;
-  }
   .footer__socials {
     gap: 24px;
     order: 1;

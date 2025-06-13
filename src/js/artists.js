@@ -19,6 +19,8 @@ import {
 } from './render-function.js';
 
 import { refs } from './refs.js';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 let currentPage = 1;
 const limit = 8;
@@ -32,7 +34,12 @@ async function loadArtists() {
     renderArtists(data);
     totalPages = Math.ceil(data.total / limit);
   } catch (error) {
-    console.error('Failed to load artists:', error);
+    iziToast.error({
+      title: 'Error',
+      message: 'Failed to load artists. Please try again later.',
+      position: 'topRight',
+      timeout: 5000,
+    });
   } finally {
     hideLoadMoreLoader();
 
@@ -45,7 +52,12 @@ async function loadArtists() {
 refs.loadMoreBtn.addEventListener('click', () => {
   currentPage++;
   loadArtists().catch(error => {
-    console.error('Failed to load more artists:', error);
+    iziToast.error({
+      title: 'Error',
+      message: 'Failed to load more artists.',
+      position: 'topRight',
+      timeout: 5000,
+    });
   });
 });
 
@@ -58,7 +70,12 @@ refs.artistCardsContainer.addEventListener('click', async e => {
   const raw = card.dataset.artist;
 
   if (!raw) {
-    console.warn('Missing artist data');
+    iziToast.warning({
+      title: 'Warning',
+      message: 'Missing artist data.',
+      position: 'topRight',
+      timeout: 4000,
+    });
     return;
   }
 
@@ -77,7 +94,12 @@ refs.artistCardsContainer.addEventListener('click', async e => {
 
     openArtistModal({ artist: mergedArtist, albums });
   } catch (error) {
-    console.error('Failed to open artist modal:', error);
+    iziToast.error({
+      title: 'Error',
+      message: 'Failed to load artist details.',
+      position: 'topRight',
+      timeout: 5000,
+    });
   } finally {
     setTimeout(() => {
       hideModalLoader();

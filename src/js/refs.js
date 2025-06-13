@@ -1,10 +1,12 @@
 export const refs = {
   // Header & Navigation
-  burger: document.querySelector('.js-burger'),
-  closeBtn: document.querySelector('.js-close'),
+  header: document.querySelector('.header'),
   navList: document.querySelector('.js-nav-list'),
   navLinks: document.querySelectorAll('.nav-button'),
-  header: document.querySelector('.header'),
+  toggleBtn: document.querySelector('.js-toggle'),
+  burgerIcon: document.querySelector('.js-burger-icon'),
+  closeIcon: document.querySelector('.js-close-icon'),
+  logo: document.querySelectorAll('.header-logo'),
 
   // Hero section
   heroSection: document.querySelector('.js-hero'),

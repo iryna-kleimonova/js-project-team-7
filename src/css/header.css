@@ -25,11 +25,10 @@
   display: block;
 }
 
-.burger,
-.burger-close {
+.burger-toggle {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   background-color: transparent;
   border: none;
   z-index: 1002;
@@ -38,12 +37,18 @@
 .burger-icon,
 .close-icon {
   fill: #fff;
+  transition: opacity 0.3s ease;
 }
-.burger:hover .burger-icon,
-.burger:focus .burger-icon,
-.burger-close:hover .close-icon,
-.burger-close:focus .close-icon {
+
+.burger-icon:hover,
+.burger-icon:focus,
+.close-icon:hover,
+.close-icon:focus {
   fill: #8952a7;
+}
+
+.hidden {
+  display: none;
 }
 
 .nav-list {
@@ -53,31 +58,18 @@
 .nav-list.is-open {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   position: fixed;
-  inset: 0;
-  background: #060307;
+  top: 64px;
+  left: 0;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 64px);
+  background-color: #060307;
   gap: 32px;
-  padding-top: 103px;
+  padding-top: 40px;
   z-index: 1001;
 }
 
-.nav-menu-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 64px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 24px;
-  background-color: #060307;
-  z-index: 1002;
-}
 .body-lock {
   overflow: hidden;
 }
@@ -94,14 +86,8 @@
 }
 
 .nav-button:hover,
-.nav-button:focus {
-  color: #8952a7;
-}
+.nav-button:focus,
 .nav-button.active {
-  color: #8952a7;
-
-}
-.nav-button.active:not(:hover) {
   color: #8952a7;
 }
 
@@ -111,19 +97,18 @@
     padding: 0 64px;
   }
 
-  .burger,
-  .burger-close,
-  .nav-menu-header {
+  .burger-toggle,
+  .burger-icon,
+  .close-icon {
     display: none;
   }
 
   .nav-list {
-    display: flex;
+    display: flex !important;
     flex-direction: row;
-    align-items: center;
     gap: 32px;
-    position: static;
     background: none;
+    position: static;
     height: auto;
     padding: 0;
   }

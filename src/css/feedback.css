@@ -1,11 +1,10 @@
-.reviews{
+.reviews {
   padding: 64px 0;
 }
 
-
 @media screen and (min-width: 1440px) {
-  .reviews{
-padding: 112px 0;
+  .reviews {
+    padding: 112px 0;
   }
 }
 
@@ -23,19 +22,19 @@ padding: 112px 0;
 
 .swiper-wrapper {
   max-width: 100%;
-  padding-bottom: 16px;
+}
+
+.swiper-slide {
+  padding-bottom: 44px;
 }
 
 @media screen and (min-width: 768px) {
   .swiper-slide {
-    padding: 0 93px;
+    padding: 0 93px 44px;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .swiper-wrapper {
-    padding-bottom: 0;
-  }
   .swiper-slide {
     padding: 59px 223px;
   }
@@ -48,22 +47,19 @@ padding: 112px 0;
   line-height: 1.4;
   letter-spacing: -0.01em;
   text-align: center;
-  
+
   margin-bottom: 32px;
 }
 
-
 @media screen and (min-width: 768px) {
-  .feedback-text{
+  .feedback-text {
     font-size: 26px;
-
   }
 }
 @media screen and (min-width: 1440px) {
-  .feedback-text{
+  .feedback-text {
     font-size: 32px;
     line-height: 1.3;
-
   }
 }
 
@@ -73,24 +69,8 @@ padding: 112px 0;
   line-height: 1.5;
 }
 
-
-.swiper-pagination{
-height: 28px;
-}
-
-@media screen and (min-width: 768px) {
-  .feedback-text {
-    font-size: 26px;
-    width: 518px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .feedback-text {
-    font-size: 32px;
-    line-height: 1.3;
-    width: 866px;
-  }
+.swiper-pagination {
+  height: 28px;
 }
 
 .swiper-pagination-bullet {

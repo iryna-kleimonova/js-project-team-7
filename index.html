@@ -52,7 +52,7 @@
     <script type="module" crossorigin src="/js-project-team-7/index.js"></script>
     <link rel="modulepreload" crossorigin href="/js-project-team-7/assets/vendor-DqgFoMSy.js">
     <link rel="stylesheet" crossorigin href="/js-project-team-7/assets/vendor-DKi6149Q.css">
-    <link rel="stylesheet" crossorigin href="/js-project-team-7/assets/index-DQdTlPcM.css">
+    <link rel="stylesheet" crossorigin href="/js-project-team-7/assets/index-CArhYfRi.css">
   </head>
   <body>
     <header class="header">
@@ -64,28 +64,20 @@
     </a>
 
     <nav class="page-nav">
-
-      <button type="button" class="burger js-burger" aria-label="Open menu">
-        <svg class="burger-icon" width="24" height="24">
+      <button
+        type="button"
+        class="burger-toggle js-toggle"
+        aria-label="Toggle menu"
+      >
+        <svg class="burger-icon js-burger-icon" width="24" height="24">
           <use href="/js-project-team-7/assets/sprite-DCaIFKl6.svg#icon-icon-burger-new"></use>
+        </svg>
+        <svg class="close-icon js-close-icon hidden" width="36" height="36">
+          <use href="/js-project-team-7/assets/sprite-DCaIFKl6.svg#icon-menu-close"></use>
         </svg>
       </button>
 
       <ul class="nav-list js-nav-list">
-
-        <li class="nav-menu-header">
-          <a class="header-logo mobile-logo" href="#" aria-label="main-page-header">
-            <svg class="logo" width="119" height="51">
-              <use href="/js-project-team-7/assets/sprite-DCaIFKl6.svg#icon-Content-logo"></use>
-            </svg>
-          </a>
-          <button type="button" class="burger-close js-close" aria-label="Close menu">
-            <svg class="close-icon" width="36" height="36">
-              <use href="/js-project-team-7/assets/sprite-DCaIFKl6.svg#icon-menu-close"></use>
-            </svg>
-          </button>
-        </li>
-
         <li><a href="#artists" class="nav-button">Artist</a></li>
         <li><a href="#about" class="nav-button">About Us</a></li>
         <li><a href="#reviews" class="nav-button">Reviews</a></li>
@@ -93,6 +85,7 @@
     </nav>
   </div>
 </header>
+
 
     <main>
       <!-- Loads the specified .html file -->

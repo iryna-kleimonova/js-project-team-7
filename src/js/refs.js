@@ -44,6 +44,12 @@ export const refs = {
   testimonialsSlider: document.querySelector('.js-testimonials-slider'),
   testimonialPrevBtn: document.querySelector('.js-testimonials-btn-prev'),
   testimonialNextBtn: document.querySelector('.js-testimonials-btn-next'),
+  // Feedback Modal
+  feedbackModalEl: document.getElementById('feedback-modal'),
+  feedbackOpenBtnEl: document.querySelector('.feedback-open-btn'),
+  feedbackCloseBtnEl: document.querySelector('.feedback-close-btn'),
+  feedbackFormEl: document.querySelector('.feedback-form'),
+  feedbackStarsEls: document.querySelectorAll('.star'),
 
   // Footer
   footer: document.querySelector('.js-footer'),

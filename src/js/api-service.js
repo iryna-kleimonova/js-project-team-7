@@ -50,3 +50,21 @@ export async function fetchArtistsAlbumsById(id) {
     throw error;
   }
 }
+
+export async function postFeedback({ name, rating, descr }) {
+  try {
+    const { data } = await axios.post('/feedbacks', {
+name,
+rating,
+descr,
+    });
+    return data;
+  } catch (error) {
+    iziToast.error({
+      title: 'Error',
+      message: 'Failed to submit feedback. Please try again.',
+      position: 'topRight',
+    });
+    throw error;
+  }
+}
